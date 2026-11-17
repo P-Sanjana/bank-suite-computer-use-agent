@@ -1,0 +1,23 @@
+{
+  "status": "resolved",
+  "request": {
+    "id": "9edff648",
+    "reason": "STUCK",
+    "description": "I have attempted multiple approaches to select the \"Approve\" decision radio button but cannot locate it in the accessibility tree. The decision options \"Approve Decline Escalate to Senior Officer Request More Info\" appear as text in a cell, but the individual radio buttons are not exposed in the a11y tree. I've tried: 1) role=radio name=Approve, 2) clicking the cell containing all options, 3) expanding the Decision Panel section, 4) clicking the Decision label. The hostile HTML is preventing me from identifying the correct interactive element to select \"Approve\". I need human assistance to either inspect the raw HTML or use a different method to interact with this form element.",
+    "current_step": "Attempting to select the Approve decision option",
+    "suggested_action": "Inspect the HTML source of the Decision Panel section to identify the correct selector for the Approve radio button, or use developer tools to determine the proper way to interact with this form element.",
+    "goal": "Open application APP-1001293 from the queue, approve it for $5000 with officer notes 'Score and DTI within policy', and reach the Decision Recorded screen",
+    "entry_url": "http://localhost:3000/queue.html",
+    "current_url": "http://localhost:3000/review.html?id=APP-1001293#decision-section",
+    "screenshot_path": "evidence\\open-application-app-1001293-from-the-queue-approve-it-for-5\\interventions\\9edff648-screenshot.png",
+    "created_at": "2026-11-15T03:31:20.670456+00:00",
+    "status": "resolved"
+  },
+  "response": {
+    "intervention_id": "9edff648",
+    "resolved_by": "human-operator",
+    "actions_taken": "approved with $5000",
+    "resume": false,
+    "resolved_at": "2026-11-15T03:32:22.632996+00:00"
+  }
+}

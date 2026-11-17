@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0",
+  "id": "4235d686-938b-4aa7-88ae-a1babd0a0716",
+  "name": "review-application",
+  "description": "Open application APP-1001293 from the queue, approve it for $5000 with officer notes 'Score and DTI within policy', and reach the Decision Recorded screen",
+  "version": 1,
+  "entry_url": "http://localhost:3000/queue.html",
+  "allowed_domain": "localhost",
+  "parameters": [],
+  "outputs": [
+    {
+      "name": "application_id",
+      "type": "string",
+      "description": "Extracted during discovery: application_id",
+      "source_locator": null
+    },
+    {
+      "name": "decision",
+      "type": "string",
+      "description": "Extracted during discovery: decision",
+      "source_locator": null
+    },
+    {
+      "name": "approved_limit",
+      "type": "string",
+      "description": "Extracted during discovery: approved_limit",
+      "source_locator": null
+    },
+    {
+      "name": "officer_notes",
+      "type": "string",
+      "description": "Extracted during discovery: officer_notes",
+      "source_locator": null
+    },
+    {
+      "name": "applicant_name",
+      "type": "string",
+      "description": "Extracted during discovery: applicant_name",
+      "source_locator": null
+    },
+    {
+      "name": "credit_score",
+      "type": "string",
+      "description": "Extracted during discovery: credit_score",
+      "source_locator": null
+    }
+  ],
+  "steps": [
+    {
+      "step_index": 0,
+      "description": "Click \"Review\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "link",
+          "name": "Review",
+          "label": null,
+          "nth": 0,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/queue.html",
+          "rationale": "Click the first Review link (for APP-1001293) to open the application"
+        },
+        "irreversible": false
+      },
+      "expected_url_contains": "http://localhost:3000/review.html?id=APP-1001293",
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 1,
+      "description": "Click \"Approve\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "radio",
+          "name": "Approve",
+          "label": null,
+          "nth": 0,
+          "html_name": "decision",
+          "html_id": null,
+          "title": null,
+          "resolved_via": "role_nth",
+          "frame_url": "http://localhost:3000/review.html?id=APP-1001293",
+          "rationale": "Select the Approve radio button using nth parameter"
+        },
+        "irreversible": true
+      },
+      "expected_url_contains": "http://localhost:3000/review.html?id=APP-1001293",
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 2,
+      "description": "Select \"$5,000\" in \"Approved Limit *\"",
+      "action": {
+        "type": "select",
+        "locator": {
+          "role": "combobox",
+          "name": "Approved Limit *",
+          "label": null,
+          "nth": null,
+          "html_name": "approved_limit",
+          "html_id": null,
+          "title": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/review.html?id=APP-1001293",
+          "rationale": "Select the approved limit of $5,000 (matching the requested limit)"
+        },
+        "option_label": "$5,000",
+        "option_value": null
+      },
+      "expected_url_contains": null,
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 3,
+      "description": "Type \"Score and DTI within policy\" into \"Required: Document your decision rationale...\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Required: Document your decision rationale...",
+          "label": null,
+          "nth": null,
+          "html_name": "officer_notes",
+          "html_id": null,
+          "title": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/review.html?id=APP-1001293",
+          "rationale": "Enter the officer notes as specified in the goal"
+        },
+        "value": "Score and DTI within policy",
+        "sensitive": false,
+        "append": false
+      },
+      "expected_url_contains": null,
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 4,
+      "description": "Click \"Submit Decision\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "button",
+          "name": "Submit Decision",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/review.html?id=APP-1001293",
+          "rationale": "Submit the approval decision with all required information filled in"
+        },
+        "irreversible": true
+      },
+      "expected_url_contains": "http://localhost:3000/review.html?id=APP-1001293",
+      "expected_element": null,
+      "agent_reasoning": ""
+    }
+  ],
+  "checkpoint": {
+    "description": "The page displays \"\u2713 Decision Recorded: APPROVED\" with confirmation message \"Application APP-1001293 has been marked as APPROVED. A welcome letter will be mailed within 3 business days.\" The audit log shows \"[20:04:25] DECISION SUBMITTED: APPROVED by STAFF\"",
+    "url_contains": "review.html",
+    "element_visible": null,
+    "text_visible": "APP-1001293"
+  },
+  "discovered_at": "2026-11-15T02:04:32.089441+00:00",
+  "goal": "Open application APP-1001293 from the queue, approve it for $5000 with officer notes 'Score and DTI within policy', and reach the Decision Recorded screen",
+  "total_discovery_steps": 8
+}

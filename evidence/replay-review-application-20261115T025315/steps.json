@@ -1,0 +1,47 @@
+{
+  "kind": "replay",
+  "artifact": "review-application",
+  "goal": "Open application {app_id} from the queue, approve it for $5000 with officer notes 'Score and DTI within policy', and reach the Decision Recorded screen",
+  "params": {
+    "app_id": "APP-1000901"
+  },
+  "outputs_so_far": {},
+  "result": {
+    "status": "business_outcome",
+    "outcome_code": "ALREADY_DECIDED",
+    "description": "Application already decided",
+    "step_index": 0,
+    "outputs": {}
+  },
+  "steps": [
+    {
+      "step_index": 0,
+      "description": "Click \"Review\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "link",
+          "name": "Review",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": "{app_id}",
+          "resolved_via": "href_contains",
+          "frame_url": "http://localhost:3000/queue.html",
+          "rationale": "Click the first Review link in the queue table, which corresponds to {app_id} (Delacroix, Marcus)"
+        },
+        "irreversible": false
+      },
+      "status": "business_outcome",
+      "result": {
+        "status": "business_outcome",
+        "outcome_code": "ALREADY_DECIDED",
+        "description": "Application already decided",
+        "step_index": 0,
+        "outputs": {}
+      }
+    }
+  ]
+}

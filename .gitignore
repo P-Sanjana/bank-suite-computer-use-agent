@@ -1,0 +1,24 @@
+# Environment — never commit the real .env
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Playwright
+playwright-report/
+
+# Local operator poll files (keep committed evidence and artifacts)
+evidence/interventions/
+
+# Editors
+.DS_Store
+.vscode/
+.idea/
+*.swp

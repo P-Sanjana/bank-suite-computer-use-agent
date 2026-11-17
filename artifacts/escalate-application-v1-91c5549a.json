@@ -1,0 +1,219 @@
+{
+  "schema_version": "1.0",
+  "id": "91c5549a-e251-4300-8ab2-bc0d8016688b",
+  "name": "escalate-application",
+  "description": "Open application {app_id} from the queue, choose {decision}, set Escalate To to K. Patel (Senior Officer), enter officer notes '{officer_notes}', and submit until Decision Recorded.",
+  "version": 1,
+  "entry_url": "http://localhost:3000/queue.html",
+  "allowed_domain": "localhost",
+  "parameters": [
+    {
+      "name": "escalate_to",
+      "type": "string",
+      "description": "Escalate-to officer (option label or value)",
+      "required": false,
+      "default": null,
+      "allowed_values": []
+    },
+    {
+      "name": "officer_notes",
+      "type": "string",
+      "description": "Officer notes / decision rationale",
+      "required": true,
+      "default": null,
+      "allowed_values": []
+    },
+    {
+      "name": "app_id",
+      "type": "string",
+      "description": "Application ID (e.g. APP-1234567)",
+      "required": true,
+      "default": "APP-1001411",
+      "allowed_values": []
+    },
+    {
+      "name": "decision",
+      "type": "enum",
+      "description": "Decision radio: Approve, Decline, Escalate to Senior Officer, Request More Info",
+      "required": true,
+      "default": null,
+      "allowed_values": [
+        "Approve",
+        "Decline",
+        "Escalate to Senior Officer",
+        "Request More Info"
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "name": "application_id",
+      "type": "string",
+      "description": "Extracted during discovery: application_id",
+      "source_locator": null
+    },
+    {
+      "name": "decision",
+      "type": "string",
+      "description": "Extracted during discovery: decision",
+      "source_locator": null
+    },
+    {
+      "name": "escalated_to",
+      "type": "string",
+      "description": "Extracted during discovery: escalated_to",
+      "source_locator": null
+    },
+    {
+      "name": "officer_notes",
+      "type": "string",
+      "description": "Extracted during discovery: officer_notes",
+      "source_locator": null
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "Extracted during discovery: status",
+      "source_locator": null
+    }
+  ],
+  "steps": [
+    {
+      "step_index": 0,
+      "description": "Click \"Review\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "link",
+          "name": "Review",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": "{app_id}",
+          "input_value": null,
+          "resolved_via": "href_contains",
+          "frame_url": "http://localhost:3000/queue.html",
+          "rationale": "Click the Review link for {app_id} (4th row, so nth=3)"
+        },
+        "irreversible": false
+      },
+      "expected_url_contains": "http://localhost:3000/review.html?id={app_id}",
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 1,
+      "description": "Click \"{decision}\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "radio",
+          "name": "{decision}",
+          "label": null,
+          "nth": null,
+          "html_name": "decision",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": "{decision_status}",
+          "resolved_via": "input_value",
+          "frame_url": "http://localhost:3000/review.html?id={app_id}",
+          "rationale": "Select the 'Escalate to Senior Officer' radio button as required by the goal."
+        },
+        "irreversible": false
+      },
+      "expected_url_contains": "http://localhost:3000/review.html?id={app_id}",
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 2,
+      "description": "Select \"K. Patel (Senior Officer)\" in \"Escalate To *\"",
+      "action": {
+        "type": "select",
+        "locator": {
+          "role": "combobox",
+          "name": "Escalate To *",
+          "label": null,
+          "nth": null,
+          "html_name": "escalate_to",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/review.html?id={app_id}",
+          "rationale": "Select 'K. Patel (Senior Officer)' from the Escalate To dropdown as required by the goal."
+        },
+        "option_label": "{escalate_to}",
+        "option_value": "{escalate_to}"
+      },
+      "expected_url_contains": null,
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 3,
+      "description": "Type \"Needs senior review\" into \"Officer Notes *\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Officer Notes *",
+          "label": null,
+          "nth": null,
+          "html_name": "officer_notes",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/review.html?id={app_id}",
+          "rationale": "Enter the required officer notes 'Needs senior review' as specified in the goal."
+        },
+        "value": "{officer_notes}",
+        "sensitive": false,
+        "append": false
+      },
+      "expected_url_contains": null,
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 4,
+      "description": "Click \"Submit Decision\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "button",
+          "name": "Submit Decision",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/review.html?id={app_id}",
+          "rationale": "Submit the escalation decision as all required fields have been filled (Decision: Escalate to Senior Officer, Escalate To: K. Patel, Officer Notes: 'Needs senior review')."
+        },
+        "irreversible": true
+      },
+      "expected_url_contains": "http://localhost:3000/review.html?id={app_id}",
+      "expected_element": null,
+      "agent_reasoning": ""
+    }
+  ],
+  "checkpoint": {
+    "description": "The page displays \"\u2713 Decision Recorded: {decision_status} Application {app_id} has been marked as {decision_status}. The application has been routed to the designated officer.\" The audit log confirms \"[11:46:08] DECISION SUBMITTED: {decision_status} by STAFF\".",
+    "url_contains": "review.html",
+    "element_visible": null,
+    "text_visible": "{app_id}"
+  },
+  "discovered_at": "2026-11-15T17:46:14.429037+00:00",
+  "goal": "Open application {app_id} from the queue, choose {decision}, set Escalate To to K. Patel (Senior Officer), enter officer notes '{officer_notes}', and submit until Decision Recorded.",
+  "total_discovery_steps": 6
+}

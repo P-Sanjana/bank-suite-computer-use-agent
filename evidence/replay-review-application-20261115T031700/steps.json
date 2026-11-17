@@ -1,0 +1,185 @@
+{
+  "kind": "replay",
+  "artifact": "review-application",
+  "goal": "Open application {app_id} from the queue, approve it for $5000 with officer notes 'Score and DTI within policy', and reach the Decision Recorded screen",
+  "params": {
+    "app_id": "APP-1001411",
+    "decision": "Approve",
+    "officer_notes": "Score and DTI within policy",
+    "decision_status": "APPROVED"
+  },
+  "outputs_so_far": {},
+  "result": {
+    "status": "success",
+    "outputs": {},
+    "checkpoint_passed": true,
+    "steps_executed": 7,
+    "duration_ms": 3297
+  },
+  "steps": [
+    {
+      "step_index": 0,
+      "description": "Click \"Review\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "link",
+          "name": "Review",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": "{app_id}",
+          "input_value": null,
+          "resolved_via": "href_contains",
+          "frame_url": "http://localhost:3000/queue.html",
+          "rationale": "Click the first Review link in the queue table, which corresponds to {app_id} (Delacroix, Marcus)"
+        },
+        "irreversible": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 1,
+      "description": "Click \"Approve Decline Escalate to Senior Officer Request More Info\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "cell",
+          "name": "Approve Decline Escalate to Senior Officer Request More Info",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/review.html?id={app_id}",
+          "rationale": "Click on the decision cell to reveal or interact with the radio buttons"
+        },
+        "irreversible": true
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 2,
+      "description": "Click \"\u25ba Decision Panel\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "link",
+          "name": "\u25ba Decision Panel",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/review.html?id={app_id}",
+          "rationale": "Click the Decision Panel link to expand or navigate to the decision section where the radio buttons should be visible"
+        },
+        "irreversible": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 3,
+      "description": "Type \"Score and DTI within policy\" into \"Required: Document your decision rationale...\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Required: Document your decision rationale...",
+          "label": null,
+          "nth": null,
+          "html_name": "officer_notes",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/review.html?id={app_id}#decision-section",
+          "rationale": "Enter the officer notes as required before making the decision"
+        },
+        "value": "{officer_notes}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 4,
+      "description": "Click \"Approve\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "radio",
+          "name": "{decision}",
+          "label": null,
+          "nth": null,
+          "html_name": "decision",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": "{decision_status}",
+          "resolved_via": "input_value",
+          "frame_url": "http://localhost:3000/review.html?id={app_id}#decision-section",
+          "rationale": "Select the Approve radio button to choose the approve decision"
+        },
+        "irreversible": true
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 5,
+      "description": "Select \"$5,000\" in \"Approved Limit *\"",
+      "action": {
+        "type": "select",
+        "locator": {
+          "role": "combobox",
+          "name": "Approved Limit *",
+          "label": null,
+          "nth": null,
+          "html_name": "approved_limit",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/review.html?id={app_id}#decision-section",
+          "rationale": "Select the approved limit of $5,000 as required by the goal"
+        },
+        "option_label": "$5,000",
+        "option_value": null
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 6,
+      "description": "Click \"Submit Decision\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "button",
+          "name": "Submit Decision",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/review.html?id={app_id}#decision-section",
+          "rationale": "Submit the approval decision with $5,000 limit and officer notes to complete the review"
+        },
+        "irreversible": true
+      },
+      "status": "ok"
+    }
+  ]
+}

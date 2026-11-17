@@ -1,0 +1,22 @@
+{
+  "goal": "open google.com and Look up member 1042381 and read their credit score",
+  "entry_url": "http://localhost:3000/member-lookup.html",
+  "started_at": "2026-11-15T01:58:47.762623+00:00",
+  "outcome_type": "escalated",
+  "steps": [],
+  "total_steps": 0,
+  "completed_at": "2026-11-15T01:59:07.805369+00:00",
+  "declared_outputs": null,
+  "checkpoint_evidence": null,
+  "handoffs": [
+    {
+      "intervention_id": "69f522b0",
+      "reason": "POLICY_BLOCK",
+      "operator": "human-operator",
+      "actions_taken": "734",
+      "duration_seconds": 12.689728,
+      "timestamp": "2026-11-15T01:58:55.103993+00:00",
+      "resume": false
+    }
+  ]
+}

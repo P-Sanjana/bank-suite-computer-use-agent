@@ -1,0 +1,80 @@
+{
+  "kind": "replay",
+  "artifact": "review-application",
+  "goal": "Open application {app_id} from the queue, approve it for $5000 with officer notes 'Score and DTI within policy', and reach the Decision Recorded screen",
+  "params": {
+    "app_id": "APP-1001411",
+    "decision": "Approve",
+    "officer_notes": "DTI above policy",
+    "decision_status": "APPROVED"
+  },
+  "outputs_so_far": {},
+  "result": {
+    "status": "failure",
+    "error_code": "SAFETY_BLOCK",
+    "message": "Irreversible action blocked: clicking 'Approve Decline Escalate to Senior Officer Request More Info'. Requires supervisor override.",
+    "step_index": 1,
+    "step_description": "",
+    "expected": "",
+    "observed": "",
+    "recoverable": false
+  },
+  "steps": [
+    {
+      "step_index": 0,
+      "description": "Click \"Review\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "link",
+          "name": "Review",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": "{app_id}",
+          "input_value": null,
+          "resolved_via": "href_contains",
+          "frame_url": "http://localhost:3000/queue.html",
+          "rationale": "Click the first Review link in the queue table, which corresponds to {app_id} (Delacroix, Marcus)"
+        },
+        "irreversible": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 1,
+      "description": "Click \"Approve Decline Escalate to Senior Officer Request More Info\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "cell",
+          "name": "Approve Decline Escalate to Senior Officer Request More Info",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/review.html?id={app_id}",
+          "rationale": "Click on the decision cell to reveal or interact with the radio buttons"
+        },
+        "irreversible": true
+      },
+      "status": "failure",
+      "result": {
+        "status": "failure",
+        "error_code": "SAFETY_BLOCK",
+        "message": "Irreversible action blocked: clicking 'Approve Decline Escalate to Senior Officer Request More Info'. Requires supervisor override.",
+        "step_index": 1,
+        "step_description": "",
+        "expected": "",
+        "observed": "",
+        "recoverable": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "goal": "Review application APP-9999999 and submit a decision",
+  "entry_url": "http://localhost:3000/queue.html",
+  "outcome": "failed",
+  "started_at": "2026-11-15T05:26:27.312622+00:00",
+  "completed_at": "2026-11-15T05:26:41.644241+00:00",
+  "total_steps": 0,
+  "declared_outputs": null,
+  "checkpoint_evidence": null,
+  "handoffs": [
+    {
+      "intervention_id": "390d5e5c",
+      "reason": "POLICY_BLOCK",
+      "operator": "human-operator",
+      "actions_taken": "application not found",
+      "duration_seconds": 10.640143,
+      "timestamp": "2026-11-15T05:26:30.991452+00:00",
+      "resume": false
+    }
+  ],
+  "steps": []
+}

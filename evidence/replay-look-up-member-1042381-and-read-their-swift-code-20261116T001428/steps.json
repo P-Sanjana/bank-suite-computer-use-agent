@@ -1,0 +1,73 @@
+{
+  "kind": "replay",
+  "artifact": "look-up-member-1042381-and-read-their-swift-code",
+  "goal": "Look up member 1042381 and read their SWIFT code",
+  "params": {
+    "member_no": "11111"
+  },
+  "outputs_so_far": {},
+  "result": {
+    "status": "business_outcome",
+    "outcome_code": "MEMBER_NOT_FOUND",
+    "description": "No members found matching criteria",
+    "step_index": 1,
+    "outputs": {}
+  },
+  "steps": [
+    {
+      "step_index": 0,
+      "description": "Type \"1042381\" into \"Member Number\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Member Number",
+          "label": null,
+          "nth": null,
+          "html_name": "mem_no",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/member-lookup.html",
+          "rationale": "Enter the member number 1042381 to search for the member"
+        },
+        "value": "{member_no}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 1,
+      "description": "Click \"Search Member\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "button",
+          "name": "Search Member",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/member-lookup.html",
+          "rationale": "Click the Search Member button to perform the search for member 1042381"
+        },
+        "irreversible": false
+      },
+      "status": "business_outcome",
+      "result": {
+        "status": "business_outcome",
+        "outcome_code": "MEMBER_NOT_FOUND",
+        "description": "No members found matching criteria",
+        "step_index": 1,
+        "outputs": {}
+      }
+    }
+  ]
+}

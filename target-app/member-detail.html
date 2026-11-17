@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Member Detail</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<style>
+  body { margin:0; padding:6px; font-size:12px; background:#f8f8f8; }
+</style>
+</head>
+<body>
+<div id="detail-content">
+  <table width="100%" cellpadding="3" cellspacing="0" border="0" class="detail-tbl" id="detail-main">
+    <tr><td colspan="4" class="loading-cell">Loading member record...</td></tr>
+  </table>
+</div>
+<script src="app.js"></script>
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id');
+  var members = getMembers();
+  var m = members.find(function(x){ return x.memberNo === id; });
+  var tbl = document.getElementById('detail-main');
+
+  if (!m) {
+    tbl.innerHTML = '<tr><td class="err-msg">Member record not found: ' + (id||'(none)') + '</td></tr>';
+    return;
+  }
+
+  tbl.innerHTML =
+    '<tr class="tbl-hdr"><td colspan="4">Personal Information</td></tr>' +
+    '<tr class="row-even"><td class="form-lbl-cell" width="120">Member No.</td><td class="cell-mono">' + m.memberNo + '</td>' +
+    '    <td class="form-lbl-cell" width="100">Status</td><td><span class="status-badge status-' + m.status.toLowerCase() + '">' + m.status + '</span></td></tr>' +
+    '<tr class="row-odd"><td class="form-lbl-cell">Full Name</td><td>' + m.firstName + ' ' + m.lastName + '</td>' +
+    '    <td class="form-lbl-cell">DOB</td><td>' + m.dob + '</td></tr>' +
+    '<tr class="row-even"><td class="form-lbl-cell">SSN</td><td class="cell-mono">***-**-' + m.ssn4 + '</td>' +
+    '    <td class="form-lbl-cell">Since</td><td>' + m.memberSince + '</td></tr>' +
+    '<tr class="row-odd"><td class="form-lbl-cell">Address</td><td colspan="3">' + m.address + '</td></tr>' +
+    '<tr class="row-even"><td class="form-lbl-cell">Phone</td><td>' + m.phone + '</td>' +
+    '    <td class="form-lbl-cell">Email</td><td>' + m.email + '</td></tr>' +
+    '<tr class="tbl-hdr"><td colspan="4">Account Summary</td></tr>' +
+    '<tr class="row-odd"><td class="form-lbl-cell">Open Accounts</td><td>' + m.accounts + '</td>' +
+    '    <td class="form-lbl-cell">Active CCs</td><td>' + m.activeCCs + '</td></tr>' +
+    '<tr class="row-even"><td class="form-lbl-cell">Credit Score</td><td class="' + scoreClass(m.creditScore) + '">' + m.creditScore + '</td>' +
+    '    <td class="form-lbl-cell">Income (Annual)</td><td>$' + Number(m.annualIncome).toLocaleString() + '</td></tr>' +
+    '<tr class="row-odd"><td class="form-lbl-cell">Notes</td><td colspan="3" class="cell-notes">' + (m.notes || '&mdash;') + '</td></tr>';
+
+  function scoreClass(s) {
+    if (s >= 720) return 'score-good';
+    if (s >= 620) return 'score-fair';
+    return 'score-poor';
+  }
+})();
+</script>
+</body>
+</html>

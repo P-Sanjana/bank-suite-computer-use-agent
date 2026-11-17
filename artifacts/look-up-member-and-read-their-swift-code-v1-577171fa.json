@@ -1,0 +1,148 @@
+{
+  "schema_version": "1.0",
+  "id": "577171fa-953b-4dcc-a838-9b8244597b9d",
+  "name": "look-up-member-1042381-and-read-their-swift-code",
+  "description": "Look up member 1042381 and read their SWIFT code",
+  "version": 1,
+  "entry_url": "http://localhost:3000/member-lookup.html",
+  "allowed_domain": "localhost",
+  "parameters": [
+    {
+      "name": "member_no",
+      "type": "string",
+      "description": "7-digit member number",
+      "required": true,
+      "default": null,
+      "allowed_values": []
+    }
+  ],
+  "outputs": [
+    {
+      "name": "member_number",
+      "type": "string",
+      "description": "Extracted during discovery: member_number",
+      "source_locator": null
+    },
+    {
+      "name": "member_name",
+      "type": "string",
+      "description": "Extracted during discovery: member_name",
+      "source_locator": null
+    },
+    {
+      "name": "swift_code",
+      "type": "string",
+      "description": "Extracted during discovery: swift_code",
+      "source_locator": null
+    }
+  ],
+  "steps": [
+    {
+      "step_index": 0,
+      "description": "Type \"1042381\" into \"Member Number\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Member Number",
+          "label": null,
+          "nth": null,
+          "html_name": "mem_no",
+          "html_id": null,
+          "title": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/member-lookup.html",
+          "rationale": "Enter the member number 1042381 to look up the member's information"
+        },
+        "value": "{member_no}",
+        "sensitive": false,
+        "append": false
+      },
+      "expected_url_contains": null,
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 1,
+      "description": "Click \"Search Member\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "button",
+          "name": "Search Member",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/member-lookup.html",
+          "rationale": "Submit the search to look up member 1042381"
+        },
+        "irreversible": false
+      },
+      "expected_url_contains": "http://localhost:3000/member-lookup.html",
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 2,
+      "description": "Click \"View\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "link",
+          "name": "View",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/member-lookup.html",
+          "rationale": "Click the View link to open the detailed member profile where the SWIFT code should be displayed"
+        },
+        "irreversible": false
+      },
+      "expected_url_contains": "http://localhost:3000/member-lookup.html",
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 3,
+      "description": "Navigate to http://localhost:3000/member-detail.html?id=1042381",
+      "action": {
+        "type": "navigate",
+        "url": "http://localhost:3000/member-detail.html?id=1042381",
+        "url_template": "http://localhost:3000/member-detail.html?id={member_no}"
+      },
+      "expected_url_contains": "http://localhost:3000/member-detail.html?id=1042381",
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 4,
+      "description": "Wait: duration - Wait for the page to fully load and render all content including the SWIFT code field",
+      "action": {
+        "type": "wait",
+        "condition": "duration",
+        "role": null,
+        "name": null,
+        "url_substring": null,
+        "duration_ms": 2000
+      },
+      "expected_url_contains": null,
+      "expected_element": null,
+      "agent_reasoning": ""
+    }
+  ],
+  "checkpoint": {
+    "description": "Human operator confirmed there is no SWIFT code available for this member. The member detail page for member 1042381 (Marcus Delacroix) displays all available information including Personal Information and Account Summary sections, but no SWIFT code field is present.",
+    "url_contains": null,
+    "element_visible": null,
+    "text_visible": "1042381"
+  },
+  "discovered_at": "2026-11-14T23:24:17.191853+00:00",
+  "goal": "Look up member 1042381 and read their SWIFT code",
+  "total_discovery_steps": 6
+}

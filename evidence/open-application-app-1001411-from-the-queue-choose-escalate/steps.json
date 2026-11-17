@@ -1,0 +1,209 @@
+{
+  "goal": "Open application APP-1001411 from the queue, choose Escalate to Senior Officer, set Escalate To to K. Patel (Senior Officer), enter officer notes 'Needs senior review', and submit until Decision Recorded.",
+  "entry_url": "http://localhost:3000/queue.html",
+  "outcome": "success",
+  "started_at": "2026-11-15T17:45:52.835687+00:00",
+  "completed_at": "2026-11-15T17:46:13.875371+00:00",
+  "total_steps": 6,
+  "declared_outputs": {
+    "application_id": "APP-1001411",
+    "decision": "ESCALATED",
+    "escalated_to": "K. Patel (Senior Officer)",
+    "officer_notes": "Needs senior review",
+    "status": "Decision Recorded"
+  },
+  "checkpoint_evidence": "The page displays \"\u2713 Decision Recorded: ESCALATED Application APP-1001411 has been marked as ESCALATED. The application has been routed to the designated officer.\" The audit log confirms \"[11:46:08] DECISION SUBMITTED: ESCALATED by STAFF\".",
+  "handoffs": null,
+  "steps": [
+    {
+      "step_index": 0,
+      "tool": "click",
+      "input": {
+        "role": "link",
+        "name": "Review",
+        "reason": "Click the 'Review' link for APP-1001411 to open the application."
+      },
+      "observation": "Action failed: Cannot resolve locator (radio_adjacent did not match a unique visible element). role='link', name='Review', label=None",
+      "success": false,
+      "timestamp": "2026-11-15T17:45:55.854350+00:00",
+      "error": "Cannot resolve locator (radio_adjacent did not match a unique visible element). role='link', name='Review', label=None",
+      "page_url": null,
+      "agent_reasoning": null,
+      "resolved_locator": null,
+      "extracted": null
+    },
+    {
+      "step_index": 1,
+      "tool": "click",
+      "input": {
+        "role": "link",
+        "name": "Review",
+        "nth": 3,
+        "reason": "Click the Review link for APP-1001411 (4th row, so nth=3)",
+        "resolved_via": "role_name_exact",
+        "html_name": null,
+        "html_id": null,
+        "frame_url": "http://localhost:3000/queue.html"
+      },
+      "observation": "Clicked \"Review\". Page updated (http://localhost:3000/review.html?id=APP-1001411).",
+      "success": true,
+      "timestamp": "2026-11-15T17:45:58.733802+00:00",
+      "error": null,
+      "page_url": "http://localhost:3000/review.html?id=APP-1001411",
+      "agent_reasoning": null,
+      "resolved_locator": {
+        "role": "link",
+        "name": "Review",
+        "label": null,
+        "nth": 3,
+        "html_name": null,
+        "html_id": null,
+        "title": null,
+        "href_contains": null,
+        "input_value": null,
+        "resolved_via": "role_name_exact",
+        "frame_url": "http://localhost:3000/queue.html",
+        "rationale": "Click the Review link for APP-1001411 (4th row, so nth=3)"
+      },
+      "extracted": null
+    },
+    {
+      "step_index": 2,
+      "tool": "click",
+      "input": {
+        "role": "radio",
+        "name": "Escalate to Senior Officer",
+        "reason": "Select the 'Escalate to Senior Officer' radio button as required by the goal.",
+        "resolved_via": "input_value",
+        "html_name": "decision",
+        "html_id": null,
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001411"
+      },
+      "observation": "Clicked \"Escalate to Senior Officer\". Page updated (http://localhost:3000/review.html?id=APP-1001411).",
+      "success": true,
+      "timestamp": "2026-11-15T17:46:01.295585+00:00",
+      "error": null,
+      "page_url": "http://localhost:3000/review.html?id=APP-1001411",
+      "agent_reasoning": null,
+      "resolved_locator": {
+        "role": "radio",
+        "name": "Escalate to Senior Officer",
+        "label": null,
+        "nth": null,
+        "html_name": "decision",
+        "html_id": null,
+        "title": null,
+        "href_contains": null,
+        "input_value": null,
+        "resolved_via": "input_value",
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001411",
+        "rationale": "Select the 'Escalate to Senior Officer' radio button as required by the goal."
+      },
+      "extracted": null
+    },
+    {
+      "step_index": 3,
+      "tool": "select",
+      "input": {
+        "role": "combobox",
+        "name": "Escalate To *",
+        "option_label": "K. Patel (Senior Officer)",
+        "reason": "Select 'K. Patel (Senior Officer)' from the Escalate To dropdown as required by the goal.",
+        "resolved_via": "xpath_proximity",
+        "html_name": "escalate_to",
+        "html_id": null,
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001411"
+      },
+      "observation": "Selected \"K. Patel (Senior Officer)\" in \"Escalate To *\".",
+      "success": true,
+      "timestamp": "2026-11-15T17:46:03.878106+00:00",
+      "error": null,
+      "page_url": null,
+      "agent_reasoning": null,
+      "resolved_locator": {
+        "role": "combobox",
+        "name": "Escalate To *",
+        "label": null,
+        "nth": null,
+        "html_name": "escalate_to",
+        "html_id": null,
+        "title": null,
+        "href_contains": null,
+        "input_value": null,
+        "resolved_via": "xpath_proximity",
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001411",
+        "rationale": "Select 'K. Patel (Senior Officer)' from the Escalate To dropdown as required by the goal."
+      },
+      "extracted": null
+    },
+    {
+      "step_index": 4,
+      "tool": "type",
+      "input": {
+        "role": "textbox",
+        "name": "Officer Notes *",
+        "value": "Needs senior review",
+        "reason": "Enter the required officer notes 'Needs senior review' as specified in the goal.",
+        "resolved_via": "xpath_proximity",
+        "html_name": "officer_notes",
+        "html_id": null,
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001411"
+      },
+      "observation": "Typed \"Needs senior review\" into \"Officer Notes *\".",
+      "success": true,
+      "timestamp": "2026-11-15T17:46:06.388451+00:00",
+      "error": null,
+      "page_url": null,
+      "agent_reasoning": null,
+      "resolved_locator": {
+        "role": "textbox",
+        "name": "Officer Notes *",
+        "label": null,
+        "nth": null,
+        "html_name": "officer_notes",
+        "html_id": null,
+        "title": null,
+        "href_contains": null,
+        "input_value": null,
+        "resolved_via": "xpath_proximity",
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001411",
+        "rationale": "Enter the required officer notes 'Needs senior review' as specified in the goal."
+      },
+      "extracted": null
+    },
+    {
+      "step_index": 5,
+      "tool": "click",
+      "input": {
+        "role": "button",
+        "name": "Submit Decision",
+        "reason": "Submit the escalation decision as all required fields have been filled (Decision: Escalate to Senior Officer, Escalate To: K. Patel, Officer Notes: 'Needs senior review').",
+        "resolved_via": "role_name_exact",
+        "html_name": null,
+        "html_id": null,
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001411"
+      },
+      "observation": "Clicked \"Submit Decision\". Page updated (http://localhost:3000/review.html?id=APP-1001411).",
+      "success": true,
+      "timestamp": "2026-11-15T17:46:09.315661+00:00",
+      "error": null,
+      "page_url": "http://localhost:3000/review.html?id=APP-1001411",
+      "agent_reasoning": null,
+      "resolved_locator": {
+        "role": "button",
+        "name": "Submit Decision",
+        "label": null,
+        "nth": null,
+        "html_name": null,
+        "html_id": null,
+        "title": null,
+        "href_contains": null,
+        "input_value": null,
+        "resolved_via": "role_name_exact",
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001411",
+        "rationale": "Submit the escalation decision as all required fields have been filled (Decision: Escalate to Senior Officer, Escalate To: K. Patel, Officer Notes: 'Needs senior review')."
+      },
+      "extracted": null
+    }
+  ]
+}

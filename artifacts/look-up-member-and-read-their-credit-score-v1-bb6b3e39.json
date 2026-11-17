@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0",
+  "id": "bb6b3e39-c8c4-4986-944a-0252a8459b42",
+  "name": "look-up-member-2987654-and-read-their-credit-score",
+  "description": "Look up member 2987654 and read their credit score",
+  "version": 1,
+  "entry_url": "http://localhost:3000/member-lookup.html1",
+  "allowed_domain": "localhost",
+  "parameters": [
+    {
+      "name": "member_no",
+      "type": "string",
+      "description": "7-digit member number",
+      "required": true,
+      "default": null,
+      "allowed_values": []
+    }
+  ],
+  "outputs": [
+    {
+      "name": "credit_score",
+      "type": "string",
+      "description": "Extracted during discovery: credit_score",
+      "source_locator": {
+        "role": "",
+        "name": "Credit Score",
+        "label": null,
+        "nth": null,
+        "html_name": null,
+        "html_id": null,
+        "title": null,
+        "resolved_via": "xpath_value_cell",
+        "frame_url": "http://localhost:3000/member-detail.html?id=2987654",
+        "rationale": "Reading the credit score value for member 2987654 from the member detail page."
+      }
+    },
+    {
+      "name": "member_number",
+      "type": "string",
+      "description": "Extracted during discovery: member_number",
+      "source_locator": null
+    },
+    {
+      "name": "member_name",
+      "type": "string",
+      "description": "Extracted during discovery: member_name",
+      "source_locator": null
+    }
+  ],
+  "steps": [
+    {
+      "step_index": 0,
+      "description": "Navigate to http://localhost:3000/member-lookup.html",
+      "action": {
+        "type": "navigate",
+        "url": "http://localhost:3000/member-lookup.html",
+        "url_template": null
+      },
+      "expected_url_contains": "http://localhost:3000/member-lookup.html",
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 1,
+      "description": "Type \"2987654\" into \"Member Number\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Member Number",
+          "label": null,
+          "nth": null,
+          "html_name": "mem_no",
+          "html_id": null,
+          "title": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/member-lookup.html",
+          "rationale": "Entering the member number 2987654 to search for the member whose credit score I need to read."
+        },
+        "value": "{member_no}",
+        "sensitive": false,
+        "append": false
+      },
+      "expected_url_contains": null,
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 2,
+      "description": "Click \"Search Member\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "button",
+          "name": "Search Member",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/member-lookup.html",
+          "rationale": "Clicking the Search Member button to look up member 2987654 and retrieve their information including credit score."
+        },
+        "irreversible": false
+      },
+      "expected_url_contains": "http://localhost:3000/member-lookup.html",
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 3,
+      "description": "Click \"View\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "link",
+          "name": "View",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/member-lookup.html",
+          "rationale": "Clicking the View link for member 2987654 to access their detailed profile where the credit score should be displayed."
+        },
+        "irreversible": false
+      },
+      "expected_url_contains": "http://localhost:3000/member-lookup.html",
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 4,
+      "description": "Read \"credit_score\" from \"Credit Score\"",
+      "action": {
+        "type": "read",
+        "output_key": "credit_score",
+        "locator": {
+          "role": "",
+          "name": "Credit Score",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "resolved_via": "xpath_value_cell",
+          "frame_url": "http://localhost:3000/member-detail.html?id=2987654",
+          "rationale": "Reading the credit score value for member 2987654 from the member detail page."
+        }
+      },
+      "expected_url_contains": null,
+      "expected_element": null,
+      "agent_reasoning": ""
+    }
+  ],
+  "checkpoint": {
+    "description": "The member detail page for Yolanda Okonkwo (member 2987654) is displayed in an iframe, showing Credit Score field with the value 651 in the Account Summary section.",
+    "url_contains": null,
+    "element_visible": null,
+    "text_visible": "651"
+  },
+  "discovered_at": "2026-11-14T03:11:24.437716+00:00",
+  "goal": "Look up member 2987654 and read their credit score",
+  "total_discovery_steps": 5
+}

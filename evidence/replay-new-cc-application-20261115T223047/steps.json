@@ -1,0 +1,912 @@
+{
+  "kind": "replay",
+  "artifact": "new-cc-application",
+  "goal": "Submit a new credit card application for member 1042381: Marcus Delacroix, DOB 04/17/1979, SSN 342-980-9876, address 2240 Birchwood Ave Springfield IL 62704, phone (217) 555-0143, US citizen. Employment full-time with ABC consultants for 3 years, income 82000, housing 1200. Card type Gold Rewards, requested limit $5000. Check all required declarations and submit. Stop when the new application ID is shown.",
+  "params": {
+    "member_no": "1001187",
+    "first_name": "Yolanda",
+    "last_name": "Okonkwo",
+    "dob": "04/17/1979",
+    "ssn": "342-980-9876",
+    "citizenship": "US Citizen",
+    "address": "88 Maple Court",
+    "city": "Naperville",
+    "state": "IL",
+    "zip": "60540",
+    "phone": "(217) 555-0143",
+    "employment_status": "Full-Time Employed",
+    "employer": "ABC Consultants",
+    "years_employed": "4",
+    "gross_annual_income": "95000",
+    "monthly_rent": "1200",
+    "card_type": "Gold Rewards ($95/yr)",
+    "requested_limit": "$7,500",
+    "ssn_pt1": "342",
+    "ssn_pt2": "980",
+    "ssn_pt3": "9876"
+  },
+  "outputs_so_far": {},
+  "result": {
+    "status": "success",
+    "outputs": {},
+    "checkpoint_passed": true,
+    "steps_executed": 36,
+    "duration_ms": 7968
+  },
+  "steps": [
+    {
+      "step_index": 0,
+      "description": "Type \"1042381\" into \"Member Number *\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Member Number *",
+          "label": null,
+          "nth": null,
+          "html_name": "app_mem_no",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter the member number for Marcus Delacroix to start the credit card application."
+        },
+        "value": "{member_no}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 1,
+      "description": "Click \"Lookup Member\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "button",
+          "name": "Lookup Member",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Click the Lookup Member button to retrieve existing member information for member 1042381."
+        },
+        "irreversible": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 2,
+      "description": "Type \"Yolanda\" into \"First Name *\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "First Name *",
+          "label": null,
+          "nth": null,
+          "html_name": "app_fname",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": null,
+          "rationale": ""
+        },
+        "value": "{first_name}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 3,
+      "description": "Type \"Okonkwo\" into \"Last Name *\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Last Name *",
+          "label": null,
+          "nth": null,
+          "html_name": "app_lname",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": null,
+          "rationale": ""
+        },
+        "value": "{last_name}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 4,
+      "description": "Type \"04/17/1979\" into \"Date of Birth *\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Date of Birth *",
+          "label": null,
+          "nth": null,
+          "html_name": "app_dob",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": null,
+          "rationale": ""
+        },
+        "value": "{dob}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 5,
+      "description": "Type \"(217) 555-0143\" into \"Phone *\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Phone *",
+          "label": null,
+          "nth": null,
+          "html_name": "app_phone",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": null,
+          "rationale": ""
+        },
+        "value": "{phone}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 6,
+      "description": "Type [REDACTED] into \"XXX\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "XXX",
+          "label": null,
+          "nth": null,
+          "html_name": "ssn_pt1",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter the first three digits of the SSN."
+        },
+        "value": "{ssn_pt1}",
+        "sensitive": true,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 7,
+      "description": "Type [REDACTED] into \"XX\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "XX",
+          "label": null,
+          "nth": null,
+          "html_name": "ssn_pt2",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter the middle two digits of the SSN."
+        },
+        "value": "{ssn_pt2}",
+        "sensitive": true,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 8,
+      "description": "Type [REDACTED] into \"XXXX\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "XXXX",
+          "label": null,
+          "nth": null,
+          "html_name": "ssn_pt3",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter the last four digits of the SSN."
+        },
+        "value": "{ssn_pt3}",
+        "sensitive": true,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 9,
+      "description": "Click \"US Citizen\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "radio",
+          "name": "{citizenship}",
+          "label": null,
+          "nth": null,
+          "html_name": "citizenship",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "radio_adjacent",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Select US Citizen as the citizenship status for Marcus Delacroix."
+        },
+        "irreversible": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 10,
+      "description": "Type \"2240 Birchwood Ave\" into \"Address Line 1 *\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Address Line 1 *",
+          "label": null,
+          "nth": null,
+          "html_name": "app_addr1",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter the street address for Marcus Delacroix."
+        },
+        "value": "{address}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 11,
+      "description": "Type \"Springfield\" into \"City *\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "City *",
+          "label": null,
+          "nth": null,
+          "html_name": "app_city",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter the city name for Marcus Delacroix's address."
+        },
+        "value": "{city}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 12,
+      "description": "Select \"IL\" in \"None\"",
+      "action": {
+        "type": "select",
+        "locator": {
+          "role": "combobox",
+          "name": "",
+          "label": null,
+          "nth": 0,
+          "html_name": "app_state",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_nth",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Select Illinois from the state dropdown using nth as fallback since name/label approach is not working."
+        },
+        "option_label": "{state}",
+        "option_value": "{state}"
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 13,
+      "description": "Type \"62704\" into \"None\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "",
+          "label": null,
+          "nth": 5,
+          "html_name": "ssn_pt1",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_nth",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter the ZIP code using nth to locate the textbox after the state dropdown."
+        },
+        "value": "{ssn_pt1}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 14,
+      "description": "Type [REDACTED] into \"XXX\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "XXX",
+          "label": null,
+          "nth": null,
+          "html_name": "ssn_pt1",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Fix the SSN first part which was incorrectly overwritten with the ZIP code."
+        },
+        "value": "{ssn_pt1}",
+        "sensitive": true,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 15,
+      "description": "Type \"62704\" into \"None\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "",
+          "label": null,
+          "nth": 9,
+          "html_name": "app_addr2",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_nth",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter the ZIP code in the correct textbox which should be after the state dropdown."
+        },
+        "value": "62704",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 16,
+      "description": "Type \"\" into \"Address Line 2\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Address Line 2",
+          "label": null,
+          "nth": null,
+          "html_name": "app_addr2",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Clear the Address Line 2 field which incorrectly contains the ZIP code."
+        },
+        "value": "",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 17,
+      "description": "Type \"62704\" into \"None\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "",
+          "label": null,
+          "nth": 10,
+          "html_name": "app_city",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_nth",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter the ZIP code in the correct ZIP field which should be the textbox after the state dropdown in the same row."
+        },
+        "value": "{city}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 18,
+      "description": "Type \"Springfield\" into \"City *\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "City *",
+          "label": null,
+          "nth": null,
+          "html_name": "app_city",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Fix the City field which was overwritten with ZIP code - restore to Springfield."
+        },
+        "value": "{city}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 19,
+      "description": "Type \"62704\" into \"None\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "",
+          "label": null,
+          "nth": 11,
+          "html_name": "app_zip",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_nth",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter the ZIP code in the textbox that comes after the state dropdown in the form."
+        },
+        "value": "{zip}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 20,
+      "description": "Click \"Next: Employment >\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "button",
+          "name": "Next: Employment >",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "All required fields in Step 1 are now complete. Proceed to the Employment section."
+        },
+        "irreversible": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 21,
+      "description": "Select \"Full-Time Employed\" in \"Employment Status *\"",
+      "action": {
+        "type": "select",
+        "locator": {
+          "role": "combobox",
+          "name": "Employment Status *",
+          "label": null,
+          "nth": null,
+          "html_name": "emp_status",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Select Full-Time employment status as specified in the goal."
+        },
+        "option_label": "{employment_status}",
+        "option_value": "{employment_status}"
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 22,
+      "description": "Type \"ABC Consultants\" into \"Employer Name *\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Employer Name *",
+          "label": null,
+          "nth": null,
+          "html_name": "emp_name",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter the employer name as specified in the goal."
+        },
+        "value": "{employer}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 23,
+      "description": "Type \"3\" into \"Years Employed *\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Years Employed *",
+          "label": null,
+          "nth": null,
+          "html_name": "emp_years",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter years employed as specified in the goal (3 years)."
+        },
+        "value": "{years_employed}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 24,
+      "description": "Type \"82000\" into \"Gross Annual Income *\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Gross Annual Income *",
+          "label": null,
+          "nth": null,
+          "html_name": "emp_income",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter the gross annual income as specified in the goal."
+        },
+        "value": "{gross_annual_income}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 25,
+      "description": "Type \"1200\" into \"Monthly Rent/Mortgage *\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Monthly Rent/Mortgage *",
+          "label": null,
+          "nth": null,
+          "html_name": "emp_housing",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Enter the monthly housing cost as specified in the goal."
+        },
+        "value": "{monthly_rent}",
+        "sensitive": false,
+        "append": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 26,
+      "description": "Click \"Next: Product >\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "button",
+          "name": "Next: Product >",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "All required employment fields are complete. Proceed to the Product Selection section."
+        },
+        "irreversible": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 27,
+      "description": "Select \"Gold Rewards ($95/yr)\" in \"Card Type *\"",
+      "action": {
+        "type": "select",
+        "locator": {
+          "role": "combobox",
+          "name": "Card Type *",
+          "label": null,
+          "nth": null,
+          "html_name": "card_type",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Select Gold Rewards card type as specified in the goal."
+        },
+        "option_label": "{card_type}",
+        "option_value": "{card_type}"
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 28,
+      "description": "Select \"$5,000\" in \"Requested Credit Limit *\"",
+      "action": {
+        "type": "select",
+        "locator": {
+          "role": "combobox",
+          "name": "Requested Credit Limit *",
+          "label": null,
+          "nth": null,
+          "html_name": "req_limit",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Select the requested credit limit of $5,000 as specified in the goal."
+        },
+        "option_label": "{requested_limit}",
+        "option_value": "{requested_limit}"
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 29,
+      "description": "Click \"Next: Declarations >\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "button",
+          "name": "Next: Declarations >",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Product selection is complete. Proceed to the Declarations section."
+        },
+        "irreversible": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 30,
+      "description": "Click \"None\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "checkbox",
+          "name": "",
+          "label": null,
+          "nth": 0,
+          "html_name": "decl_accurate",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_nth",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Check the first declaration checkbox using nth as fallback."
+        },
+        "irreversible": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 31,
+      "description": "Click \"None\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "checkbox",
+          "name": "",
+          "label": null,
+          "nth": 1,
+          "html_name": "decl_credit_pull",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_nth",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Check the second required declaration checkbox (credit report authorization)."
+        },
+        "irreversible": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 32,
+      "description": "Click \"None\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "checkbox",
+          "name": "",
+          "label": null,
+          "nth": 2,
+          "html_name": "decl_terms",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_nth",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Check the third required declaration checkbox (Cardholder Agreement and Privacy Notice)."
+        },
+        "irreversible": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 33,
+      "description": "Click \"None\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "checkbox",
+          "name": "",
+          "label": null,
+          "nth": 3,
+          "html_name": "decl_bankruptcy",
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_nth",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "Check the fourth required declaration checkbox (bankruptcy declaration)."
+        },
+        "irreversible": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 34,
+      "description": "Click \"Next: Review >\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "button",
+          "name": "Next: Review >",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "All required declarations are checked. Proceed to the Review & Submit section."
+        },
+        "irreversible": false
+      },
+      "status": "ok"
+    },
+    {
+      "step_index": 35,
+      "description": "Click \"Submit Application\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "button",
+          "name": "Submit Application",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "href_contains": null,
+          "input_value": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/application.html",
+          "rationale": "All information has been reviewed and is correct. Submit the application as specified in the goal."
+        },
+        "irreversible": true
+      },
+      "status": "ok"
+    }
+  ]
+}

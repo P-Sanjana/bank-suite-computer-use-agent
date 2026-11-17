@@ -1,0 +1,209 @@
+{
+  "goal": "Open application APP-1001293 from the queue, approve it for $5000 with officer notes 'Score and DTI within policy', and reach the Decision Recorded screen",
+  "entry_url": "http://localhost:3000/queue.html",
+  "started_at": "2026-11-15T03:30:57.016229+00:00",
+  "outcome_type": "escalated",
+  "steps": [
+    {
+      "step_index": 0,
+      "tool": "click",
+      "input": {
+        "role": "link",
+        "name": "Review",
+        "reason": "Click the Review link for APP-1001293 to open the application"
+      },
+      "observation": "Action failed: Cannot resolve locator (xpath_value_cell did not match a unique visible element). role='link', name='Review', label=None",
+      "success": false,
+      "timestamp": "2026-11-15T03:30:59.587782+00:00",
+      "error": "Cannot resolve locator (xpath_value_cell did not match a unique visible element). role='link', name='Review', label=None",
+      "page_url": null,
+      "agent_reasoning": null,
+      "resolved_locator": null,
+      "extracted": null
+    },
+    {
+      "step_index": 1,
+      "tool": "click",
+      "input": {
+        "role": "link",
+        "name": "Review",
+        "nth": 0,
+        "reason": "Click the first Review link for APP-1001293",
+        "resolved_via": "role_name_exact",
+        "html_name": null,
+        "html_id": null,
+        "frame_url": "http://localhost:3000/queue.html"
+      },
+      "observation": "Clicked \"Review\". Page updated (http://localhost:3000/review.html?id=APP-1001293).",
+      "success": true,
+      "timestamp": "2026-11-15T03:31:02.133425+00:00",
+      "error": null,
+      "page_url": "http://localhost:3000/review.html?id=APP-1001293",
+      "agent_reasoning": null,
+      "resolved_locator": {
+        "role": "link",
+        "name": "Review",
+        "label": null,
+        "nth": 0,
+        "html_name": null,
+        "html_id": null,
+        "title": null,
+        "href_contains": null,
+        "input_value": null,
+        "resolved_via": "role_name_exact",
+        "frame_url": "http://localhost:3000/queue.html",
+        "rationale": "Click the first Review link for APP-1001293"
+      },
+      "extracted": null
+    },
+    {
+      "step_index": 2,
+      "tool": "click",
+      "input": {
+        "role": "radio",
+        "name": "Approve",
+        "reason": "Select Approve as the decision"
+      },
+      "observation": "Action failed: Cannot resolve locator (xpath_value_cell did not match a unique visible element). role='radio', name='Approve', label=None",
+      "success": false,
+      "timestamp": "2026-11-15T03:31:04.016763+00:00",
+      "error": "Cannot resolve locator (xpath_value_cell did not match a unique visible element). role='radio', name='Approve', label=None",
+      "page_url": null,
+      "agent_reasoning": null,
+      "resolved_locator": null,
+      "extracted": null
+    },
+    {
+      "step_index": 3,
+      "tool": "read_state",
+      "input": {
+        "reason": "Need to see the full HTML structure of the decision panel to understand how the radio buttons are implemented"
+      },
+      "observation": "URL: http://localhost:3000/review.html?id=APP-1001293\nTitle: \"Bank Suite - Application Review\"",
+      "success": true,
+      "timestamp": "2026-11-15T03:31:05.934087+00:00",
+      "error": null,
+      "page_url": "http://localhost:3000/review.html?id=APP-1001293",
+      "agent_reasoning": null,
+      "resolved_locator": null,
+      "extracted": null
+    },
+    {
+      "step_index": 4,
+      "tool": "click",
+      "input": {
+        "role": "cell",
+        "name": "Approve Decline Escalate to Senior Officer Request More Info",
+        "reason": "Click on the decision cell to interact with the decision options",
+        "resolved_via": "role_name_exact",
+        "html_name": null,
+        "html_id": null,
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001293"
+      },
+      "observation": "Clicked \"Approve Decline Escalate to Senior Officer Request More Info\". Page updated (http://localhost:3000/review.html?id=APP-1001293).",
+      "success": true,
+      "timestamp": "2026-11-15T03:31:08.493121+00:00",
+      "error": null,
+      "page_url": "http://localhost:3000/review.html?id=APP-1001293",
+      "agent_reasoning": null,
+      "resolved_locator": {
+        "role": "cell",
+        "name": "Approve Decline Escalate to Senior Officer Request More Info",
+        "label": null,
+        "nth": null,
+        "html_name": null,
+        "html_id": null,
+        "title": null,
+        "href_contains": null,
+        "input_value": null,
+        "resolved_via": "role_name_exact",
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001293",
+        "rationale": "Click on the decision cell to interact with the decision options"
+      },
+      "extracted": null
+    },
+    {
+      "step_index": 5,
+      "tool": "click",
+      "input": {
+        "role": "link",
+        "name": "\u25ba Decision Panel",
+        "reason": "Expand the Decision Panel section to reveal the full decision form",
+        "resolved_via": "role_name_exact",
+        "html_name": null,
+        "html_id": null,
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001293"
+      },
+      "observation": "Clicked \"\u25ba Decision Panel\". Page updated (http://localhost:3000/review.html?id=APP-1001293#decision-section).",
+      "success": true,
+      "timestamp": "2026-11-15T03:31:11.209456+00:00",
+      "error": null,
+      "page_url": "http://localhost:3000/review.html?id=APP-1001293#decision-section",
+      "agent_reasoning": null,
+      "resolved_locator": {
+        "role": "link",
+        "name": "\u25ba Decision Panel",
+        "label": null,
+        "nth": null,
+        "html_name": null,
+        "html_id": null,
+        "title": null,
+        "href_contains": null,
+        "input_value": null,
+        "resolved_via": "role_name_exact",
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001293",
+        "rationale": "Expand the Decision Panel section to reveal the full decision form"
+      },
+      "extracted": null
+    },
+    {
+      "step_index": 6,
+      "tool": "click",
+      "input": {
+        "role": "radio",
+        "name": "Decision *",
+        "reason": "Try clicking using the label name to select the decision field",
+        "resolved_via": "xpath_value_cell",
+        "html_name": null,
+        "html_id": null,
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001293#decision-section"
+      },
+      "observation": "Clicked \"Decision *\". Page updated (http://localhost:3000/review.html?id=APP-1001293#decision-section).",
+      "success": true,
+      "timestamp": "2026-11-15T03:31:13.636349+00:00",
+      "error": null,
+      "page_url": "http://localhost:3000/review.html?id=APP-1001293#decision-section",
+      "agent_reasoning": null,
+      "resolved_locator": {
+        "role": "radio",
+        "name": "Decision *",
+        "label": null,
+        "nth": null,
+        "html_name": null,
+        "html_id": null,
+        "title": null,
+        "href_contains": null,
+        "input_value": null,
+        "resolved_via": "xpath_value_cell",
+        "frame_url": "http://localhost:3000/review.html?id=APP-1001293#decision-section",
+        "rationale": "Try clicking using the label name to select the decision field"
+      },
+      "extracted": null
+    }
+  ],
+  "total_steps": 7,
+  "completed_at": "2026-11-15T03:32:22.646251+00:00",
+  "declared_outputs": null,
+  "checkpoint_evidence": null,
+  "handoffs": [
+    {
+      "intervention_id": "9edff648",
+      "reason": "STUCK",
+      "operator": "human-operator",
+      "actions_taken": "approved with $5000",
+      "duration_seconds": 61.9646,
+      "timestamp": "2026-11-15T03:31:20.670456+00:00",
+      "resume": false
+    }
+  ]
+}

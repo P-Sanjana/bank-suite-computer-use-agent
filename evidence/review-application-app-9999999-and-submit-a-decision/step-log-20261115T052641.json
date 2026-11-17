@@ -1,0 +1,17 @@
+[
+  {
+    "level": "info",
+    "message": "Discovery started. Goal: \"Review application APP-9999999 and submit a decision\" Entry: http://localhost:3000/queue.html",
+    "timestamp": "2026-11-15T05:26:27.876639+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 1: http://localhost:3000/queue.html - \"Bank Suite - Application Queue\"",
+    "timestamp": "2026-11-15T05:26:27.943930+00:00"
+  },
+  {
+    "level": "blocked",
+    "message": "Safety blocked: Field 'Name, App ID, SSN last 4...' looks sensitive but sensitive=true was not set. Mark the field sensitive or confirm it is safe.",
+    "timestamp": "2026-11-15T05:26:30.874661+00:00"
+  }
+]

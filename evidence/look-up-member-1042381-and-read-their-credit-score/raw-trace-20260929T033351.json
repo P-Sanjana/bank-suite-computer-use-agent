@@ -1,0 +1,11 @@
+{
+  "goal": "Look up member 1042381 and read their credit score",
+  "entry_url": "http://localhost:3000/member-lookup.html",
+  "started_at": "2026-09-29T03:33:49.638377+00:00",
+  "outcome_type": "failed",
+  "steps": [],
+  "total_steps": 0,
+  "completed_at": "2026-09-29T03:33:51.038112+00:00",
+  "declared_outputs": null,
+  "checkpoint_evidence": null
+}

@@ -1,0 +1,12 @@
+{
+  "goal": "Submit a new credit card application for member 1042381: Marcus Delacroix, DOB 04/17/1979, SSN 342-980-9876, address 2240 Birchwood Ave Springfield IL 62704, phone (217) 555-0143, US citizen. Employment full-time with ABC consultants for 3 years, income 82000, housing 1200. Card type Gold Rewards, requested limit $5000. Check all required declarations and submit. Stop when the new application ID is shown.",
+  "entry_url": "http://localhost:3000/application.html",
+  "started_at": "2026-11-15T17:52:52.741652+00:00",
+  "outcome_type": "failed",
+  "steps": [],
+  "total_steps": 0,
+  "completed_at": "2026-11-15T17:52:53.367847+00:00",
+  "declared_outputs": null,
+  "checkpoint_evidence": null,
+  "handoffs": null
+}

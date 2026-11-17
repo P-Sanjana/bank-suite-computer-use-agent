@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bank Suite - Member Lookup</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-logo">Bank Suite</div>
+  <div class="topbar-nav">
+    <a href="queue.html" class="nav-link nav-active">CC Applications</a>
+    <a href="member-lookup.html" class="nav-link">Member Lookup</a>
+    <a href="reports.html" class="nav-link">Reports</a>
+  </div>
+  <div class="topbar-user">Bank Back-Office Staff</div>
+</nav>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td width="170" valign="top" class="sidebar">
+      <div class="sidebar-hdr">Quick Links</div>
+      <table cellpadding="3" cellspacing="0" border="0" width="100%">
+        <tr><td><a href="application.html" class="sb-link">&#9658; New CC Application</a></td></tr>
+        <tr><td><a href="queue.html" class="sb-link">&#9658; Application Queue</a></td></tr>
+      </table>
+    </td>
+
+    <td valign="top" class="main-content">
+      <div class="page-title">Member Lookup</div>
+      <div class="breadcrumb">Home &gt; Member Lookup</div>
+
+      <!-- Search panel - deliberately mismatched labels -->
+      <table cellpadding="0" cellspacing="0" border="1" bordercolor="#b0b8c8" width="100%" class="panel-tbl">
+        <tr class="panel-hdr-row">
+          <td colspan="4" class="panel-hdr">Search Criteria &mdash; enter at least one field</td>
+        </tr>
+        <tr>
+          <td class="form-lbl-cell" width="130">Member Number</td>
+          <td width="180"><input type="text" name="mem_no" class="inp-txt" size="18" tabindex="1"></td>
+          <td class="form-lbl-cell" width="90">Last Name</td>
+          <td><input type="text" name="lname" class="inp-txt" size="22" tabindex="2"></td>
+        </tr>
+        <tr>
+          <td class="form-lbl-cell">SSN (last 4)</td>
+          <td><input type="text" name="ssn4" class="inp-txt" size="18" maxlength="4" tabindex="4" placeholder="e.g. 1234"></td>
+          <td class="form-lbl-cell">Date of Birth</td>
+          <td><input type="text" name="dob" class="inp-txt" size="22" tabindex="3" placeholder="MM/DD/YYYY"></td>
+        </tr>
+        <tr>
+          <td class="form-lbl-cell">First Name</td>
+          <td><input type="text" name="fname" class="inp-txt" size="18" tabindex="5"></td>
+          <td class="form-lbl-cell">Phone</td>
+          <td><input type="text" name="phone" class="inp-txt" size="22" tabindex="6" placeholder="10 digits"></td>
+        </tr>
+        <tr>
+          <td colspan="4" align="right" class="panel-action-row">
+            <input type="button" value="Search Member" class="btn-primary" tabindex="7" onclick="doMemberSearch()">
+            &nbsp;
+            <input type="button" value="Clear Fields" class="btn-secondary" tabindex="8" onclick="clearLookup()">
+          </td>
+        </tr>
+      </table>
+
+      <div id="lookup-err" class="err-msg" style="display:none"></div>
+      <div id="lookup-warn" class="warn-msg" style="display:none"></div>
+
+      <!-- Results injected here -->
+      <div id="lookup-results" style="display:none">
+        <table width="100%" cellpadding="4" cellspacing="0" border="1" bordercolor="#ccc" class="queue-tbl" id="member-tbl">
+          <tr class="tbl-hdr">
+            <td>Member #</td>
+            <td>Name</td>
+            <td>DOB</td>
+            <td>SSN (masked)</td>
+            <td>Status</td>
+            <td>Open Accounts</td>
+            <td>Actions</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Member detail iframe (deliberate iframe embedding) -->
+      <div id="member-detail-panel" style="display:none; margin-top:12px;">
+        <table cellpadding="0" cellspacing="0" border="1" bordercolor="#003366" width="100%">
+          <tr class="panel-hdr-row">
+            <td class="panel-hdr" colspan="2">
+              Member Detail &mdash; <span id="detail-name-hdr"></span>
+              <a href="#" style="float:right;color:#fff;font-size:11px" onclick="closeDetail()">&#10005; Close</a>
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" valign="top" style="padding:0">
+              <iframe id="member-iframe" src="about:blank" width="100%" height="320" frameborder="0" scrolling="auto"></iframe>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </td>
+  </tr>
+</table>
+
+<script src="app.js"></script>
+<script>
+
+
+function doMemberSearch() {
+  var memNo = document.querySelector('input[name="mem_no"]').value.trim();
+  var lname = document.querySelector('input[name="lname"]').value.trim();
+  var ssn4  = document.querySelector('input[name="ssn4"]').value.trim();
+  var dob   = document.querySelector('input[name="dob"]').value.trim();
+  var fname = document.querySelector('input[name="fname"]').value.trim();
+  var err   = document.getElementById('lookup-err');
+  var warn  = document.getElementById('lookup-warn');
+
+  err.style.display  = 'none';
+  warn.style.display = 'none';
+
+  if (!memNo && !lname && !ssn4 && !dob && !fname) {
+    err.style.display = 'block';
+    err.textContent = 'ERROR: At least one search field is required.';
+    return;
+  }
+  // Deterministic error trigger
+  if (memNo === '0000000') {
+    err.style.display = 'block';
+    err.textContent = 'ERROR: Invalid member number format. Must be 7 digits.';
+    return;
+  }
+  if (lname.toUpperCase() === 'DECEASED') {
+    warn.style.display = 'block';
+    warn.textContent = 'WARNING: Member record flagged. Supervisor approval required for account actions.';
+  }
+
+  var members = getMembers();
+  var results = members.filter(function(m) {
+    if (memNo && m.memberNo !== memNo) return false;
+    if (lname && m.lastName.toUpperCase().indexOf(lname.toUpperCase()) < 0) return false;
+    if (fname && m.firstName.toUpperCase().indexOf(fname.toUpperCase()) < 0) return false;
+    if (ssn4 && m.ssn4 !== ssn4) return false;
+    if (dob && m.dob !== dob) return false;
+    return true;
+  });
+
+  var tbl = document.getElementById('member-tbl');
+  // clear old result rows
+  document.querySelectorAll('.member-result-row').forEach(function(r){ r.parentNode.removeChild(r); });
+
+  if (results.length === 0) {
+    err.style.display = 'block';
+    err.textContent = 'No members found matching the search criteria. Verify input and try again.';
+    document.getElementById('lookup-results').style.display = 'none';
+    return;
+  }
+
+  document.getElementById('lookup-results').style.display = 'block';
+  results.forEach(function(m, i) {
+    var tr = document.createElement('tr');
+    tr.className = 'member-result-row ' + (i%2===0?'row-even':'row-odd');
+    tr.setAttribute('data-memberid', m.memberNo);
+    tr.innerHTML =
+      '<td class="cell-mono">' + m.memberNo + '</td>' +
+      '<td>' + m.lastName + ', ' + m.firstName + '</td>' +
+      '<td>' + m.dob + '</td>' +
+      '<td class="cell-mono">***-**-' + m.ssn4 + '</td>' +
+      '<td><span class="status-badge status-' + m.status.toLowerCase() + '">' + m.status + '</span></td>' +
+      '<td align="center">' + m.accounts + '</td>' +
+      '<td>' +
+        '<a href="#" class="action-link" onclick="showMemberDetail(\'' + m.memberNo + '\',\'' + m.firstName + ' ' + m.lastName + '\');return false;">View</a> ' +
+        '<a href="application.html?member=' + m.memberNo + '" class="action-link">New CC App</a>' +
+      '</td>';
+    tbl.appendChild(tr);
+  });
+}
+
+function clearLookup() {
+  ['mem_no','lname','dob','ssn4','fname','phone'].forEach(function(n){
+    var el = document.querySelector('input[name="' + n + '"]');
+    if (el) el.value = '';
+  });
+  document.getElementById('lookup-err').style.display = 'none';
+  document.getElementById('lookup-warn').style.display = 'none';
+  document.getElementById('lookup-results').style.display = 'none';
+  document.getElementById('member-detail-panel').style.display = 'none';
+}
+
+function showMemberDetail(memNo, name) {
+  document.getElementById('detail-name-hdr').textContent = name + ' (' + memNo + ')';
+  document.getElementById('member-iframe').src = 'member-detail.html?id=' + memNo;
+  document.getElementById('member-detail-panel').style.display = 'block';
+}
+
+function closeDetail() {
+  document.getElementById('member-detail-panel').style.display = 'none';
+  document.getElementById('member-iframe').src = 'about:blank';
+}
+</script>
+</body>
+</html>

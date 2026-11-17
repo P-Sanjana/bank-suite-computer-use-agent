@@ -1,0 +1,23 @@
+{
+  "status": "resolved",
+  "request": {
+    "id": "390d5e5c",
+    "reason": "POLICY_BLOCK",
+    "description": "Field 'Name, App ID, SSN last 4...' looks sensitive but sensitive=true was not set. Mark the field sensitive or confirm it is safe.",
+    "current_step": "turn 1: type",
+    "suggested_action": "",
+    "goal": "Review application APP-9999999 and submit a decision",
+    "entry_url": "http://localhost:3000/queue.html",
+    "current_url": "http://localhost:3000/queue.html",
+    "screenshot_path": "evidence\\review-application-app-9999999-and-submit-a-decision\\interventions\\390d5e5c-screenshot.png",
+    "created_at": "2026-11-15T05:26:30.991452+00:00",
+    "status": "resolved"
+  },
+  "response": {
+    "intervention_id": "390d5e5c",
+    "resolved_by": "human-operator",
+    "actions_taken": "application not found",
+    "resume": false,
+    "resolved_at": "2026-11-15T05:26:41.625555+00:00"
+  }
+}

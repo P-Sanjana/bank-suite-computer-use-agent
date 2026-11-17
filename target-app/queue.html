@@ -1,0 +1,376 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Bank Suite - Application Queue</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="topbar">
+      <div class="topbar-logo">Bank Suite</div>
+      <div class="topbar-nav">
+        <a href="queue.html" class="nav-link nav-active">CC Applications</a>
+        <a href="member-lookup.html" class="nav-link">Member Lookup</a>
+        <a href="reports.html" class="nav-link">Reports</a>
+      </div>
+      <div class="topbar-user">Bank Back-Office Staff</div>
+    </nav>
+
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <!-- Sidebar -->
+        <td width="170" valign="top" class="sidebar">
+          <div class="sidebar-hdr">Queue Filters</div>
+          <div class="sidebar-content">
+            <div class="sb-lbl">Status</div>
+            <select id="statusFilter" class="sb-sel">
+              <option value="ALL" selected>All</option>
+              <option value="PENDING">Pending Review</option>
+              <option value="APPROVED">Approved</option>
+              <option value="DECLINED">Declined</option>
+              <option value="ESCALATED">Escalated</option>
+            </select>
+            <div class="sb-lbl">Assigned To</div>
+            <select id="assignedToFilter" class="sb-sel">
+              <option value="">All Staff</option>
+              <option value="JSMITH">JSMITH</option>
+              <option value="ADOE">ADOE</option>
+              <option value="TLEE">TLEE</option>
+            </select>
+            <div class="sb-lbl">Date Range</div>
+            <input
+              type="text"
+              id="dateFrom"
+              class="sb-inp"
+              placeholder="From MM/DD/YYYY"
+            />
+            <input
+              type="text"
+              id="dateTo"
+              class="sb-inp"
+              placeholder="To MM/DD/YYYY"
+            />
+            <div class="sb-actions">
+              <input
+                type="button"
+                value="Apply"
+                class="btn-sm"
+                onclick="applyQueueFilters()"
+              />
+              <input
+                type="button"
+                value="Reset"
+                class="btn-sm-sec"
+                onclick="resetQueueFilters()"
+              />
+            </div>
+          </div>
+        </td>
+
+        <!-- Main content -->
+        <td valign="top" class="main-content">
+          <table width="100%" cellpadding="4" cellspacing="0" border="0">
+            <tr>
+              <td class="page-title">Credit Card Application Queue</td>
+              <td align="right">
+                <input
+                  type="button"
+                  value="New Application"
+                  class="btn-primary"
+                  onclick="window.location.href = 'application.html'"
+                />
+                &nbsp;
+                <input
+                  type="button"
+                  value="Refresh"
+                  class="btn-secondary"
+                  onclick="applyQueueFilters()"
+                />
+              </td>
+            </tr>
+          </table>
+
+          <div class="breadcrumb">Home &gt; CC Applications &gt; Queue</div>
+
+          <!-- Search bar - input not labelled -->
+          <table
+            cellpadding="3"
+            cellspacing="0"
+            border="0"
+            class="search-bar-tbl"
+          >
+            <tr>
+              <td>Search:</td>
+              <td>
+                <input
+                  type="text"
+                  id="queueSearch"
+                  name="qsearch"
+                  class="inp-txt"
+                  size="30"
+                  placeholder="Name, App ID, SSN last 4..."
+                />
+              </td>
+              <td><input type="button" value="Go" class="btn-sm" onclick="searchQueue()"/></td>
+              <td width="20"></td>
+              <td class="rec-count" id="rec-count"></td>
+            </tr>
+          </table>
+
+          <!-- Queue table - no thead/tbody semantics intended -->
+          <table
+            width="100%"
+            cellpadding="0"
+            cellspacing="0"
+            border="1"
+            bordercolor="#ccc"
+            class="queue-tbl"
+            id="queue-tbl"
+          >
+            <tr class="tbl-hdr">
+              <td width="80">App&nbsp;ID</td>
+              <td width="160">Applicant Name</td>
+              <td width="90">Date Submitted</td>
+              <td width="70">Requested Limit</td>
+              <td width="60">Score</td>
+              <td width="90">Status</td>
+              <td width="80">Assigned</td>
+              <td width="90">Actions</td>
+            </tr>
+            <!-- Rows injected by JS -->
+            <tr id="queue-loading">
+              <td colspan="8" align="center" class="loading-cell">
+                Loading applications...
+              </td>
+            </tr>
+          </table>
+
+          <div id="queue-empty" class="empty-msg" style="display: none">
+            No applications match the current filter.
+          </div>
+
+          <!-- Pagination: table-based -->
+          <table cellpadding="4" cellspacing="0" border="0" class="pager-tbl">
+            <tr>
+              <td>
+                <input
+                  type="button"
+                  value="&lt;&lt; First"
+                  class="btn-sm-sec"
+                  disabled
+                />
+              </td>
+              <td>
+                <input
+                  type="button"
+                  value="&lt; Prev"
+                  class="btn-sm-sec"
+                  disabled
+                />
+              </td>
+              <td class="page-info">Page 1 of 1</td>
+              <td>
+                <input
+                  type="button"
+                  value="Next &gt;"
+                  class="btn-sm-sec"
+                  disabled
+                />
+              </td>
+              <td>
+                <input
+                  type="button"
+                  value="Last &gt;&gt;"
+                  class="btn-sm-sec"
+                  disabled
+                />
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <script src="app.js"></script>
+    <script>
+      function applyQueueFilters() {
+        var applications = getApplications();
+        const status = document.getElementById('statusFilter').value;
+        const assignedTo = document.getElementById('assignedToFilter').value;
+        const dateFrom = document.getElementById('dateFrom').value.trim();
+        const dateTo = document.getElementById('dateTo').value.trim();
+        const filteredApplications = applications.filter((app) => {
+          // Status filter
+          if (status !== 'ALL' && app.status !== status) {
+            return false;
+          }
+          // Assigned To filter
+          if (assignedTo !== '') {
+            if (app.assignedTo !== assignedTo) {
+              return false;
+            }
+          }
+          // Date range filter
+          if (dateFrom || dateTo) {
+            const submittedDate = parseDate(app.submitted);
+            if (!submittedDate) {
+              return false;
+            }
+            if (dateFrom) {
+              const fromDate = parseDate(dateFrom);
+              if (!fromDate || submittedDate < fromDate) {
+                return false;
+              }
+            }
+            if (dateTo) {
+              const toDate = parseDate(dateTo);
+              if (!toDate) {
+                return false;
+              }
+              // Include the entire "To" date
+              toDate.setHours(23, 59, 59, 999);
+              if (submittedDate > toDate) {
+                return false;
+              }
+            }
+          }
+          return true;
+        });
+        renderQueue(filteredApplications);
+      }
+      function resetQueueFilters() {
+        document.getElementById('statusFilter').value = 'ALL';
+        document.getElementById('assignedToFilter').value = '';
+        document.getElementById('dateFrom').value = '';
+        document.getElementById('dateTo').value = '';
+        renderQueue(getApplications());
+      }
+      function parseDate(value) {
+        if (!value) {
+          return null;
+        }
+        const parts = value.split('/');
+        if (parts.length !== 3) {
+          return null;
+        }
+        const month = Number(parts[0]);
+        const day = Number(parts[1]);
+        const year = Number(parts[2]);
+        if (
+          !month ||
+          !day ||
+          !year ||
+          month < 1 ||
+          month > 12 ||
+          day < 1 ||
+          day > 31
+        ) {
+          return null;
+        }
+        return new Date(year, month - 1, day);
+      }
+
+      function renderQueue(apps) {
+        var tbl = document.getElementById('queue-tbl');
+        // Remove old rows
+        document.querySelectorAll('.queue-row').forEach(function (r) {
+          r.parentNode.removeChild(r);
+        });
+        document.getElementById('queue-loading').style.display = 'none';
+
+        apps.forEach(function (a, i) {
+          var tr = document.createElement('tr');
+          tr.className = 'queue-row ' + (i % 2 === 0 ? 'row-even' : 'row-odd');
+          tr.setAttribute('data-status', a.status);
+          tr.setAttribute('data-appid', a.id);
+          tr.innerHTML =
+            '<td class="cell-mono">' +
+            a.id +
+            '</td>' +
+            '<td>' +
+            a.lastName +
+            ', ' +
+            a.firstName +
+            '</td>' +
+            '<td>' +
+            a.submitted +
+            '</td>' +
+            '<td align="right">$' +
+            Number(a.requestedLimit).toLocaleString() +
+            '</td>' +
+            '<td align="center" class="' +
+            scoreClass(a.score) +
+            '">' +
+            a.score +
+            '</td>' +
+            '<td><span class="status-badge status-' +
+            a.status.toLowerCase() +
+            '">' +
+            a.status +
+            '</span></td>' +
+            '<td>' +
+            (a.assignedTo || '&mdash;') +
+            '</td>' +
+            '<td><a href="review.html?id=' +
+            a.id +
+            '" class="action-link">Review</a> ' +
+            '<a href="#" class="action-link" onclick="reassign(\'' +
+            a.id +
+            '\');return false;">Reassign</a></td>';
+          tbl.appendChild(tr);
+        });
+        document.getElementById('rec-count').textContent =
+          apps.length + ' record(s)';
+      }
+
+      function scoreClass(s) {
+        if (s >= 720) return 'score-good';
+        if (s >= 620) return 'score-fair';
+        return 'score-poor';
+      }
+
+      function reassign(id) {
+        alert(
+          'Reassignment module not available. Contact supervisor. [REF: ' +
+            id +
+            ']',
+        );
+      }
+
+      function searchQueue() {
+        var search = document
+          .getElementById('queueSearch')
+          .value
+          .trim()
+          .toLowerCase();
+
+        var applications = getApplications();
+
+        // Empty search = show everything
+        if (!search) {
+          renderQueue(applications);
+          return;
+        }
+
+        var results = applications.filter(function (app) {
+          var searchableText = [
+            app.id,
+            app.memberNo,
+            app.firstName,
+            app.lastName,
+            app.ssnLast4
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .toLowerCase();
+
+          return searchableText.indexOf(search) !== -1;
+        });
+
+        renderQueue(results);
+      }
+
+      renderQueue(getApplications());
+    </script>
+  </body>
+</html>

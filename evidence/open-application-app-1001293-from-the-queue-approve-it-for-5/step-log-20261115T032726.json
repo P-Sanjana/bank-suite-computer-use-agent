@@ -1,0 +1,17 @@
+[
+  {
+    "level": "info",
+    "message": "Discovery started. Goal: \"Open application APP-1001293 from the queue, approve it for $5000 with officer notes 'Score and DTI within policy', and reach the Decision Recorded screen\" Entry: http://localhost:3000/queue.html",
+    "timestamp": "2026-11-15T03:27:26.228916+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 1: http://localhost:3000/queue.html - \"Bank Suite - Application Queue\"",
+    "timestamp": "2026-11-15T03:27:26.285519+00:00"
+  },
+  {
+    "level": "error",
+    "message": "Planner error: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011Ch416rW1ed4nfpe8da6DT'}",
+    "timestamp": "2026-11-15T03:27:26.609055+00:00"
+  }
+]

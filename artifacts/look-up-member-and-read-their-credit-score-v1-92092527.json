@@ -1,0 +1,213 @@
+{
+  "schema_version": "1.0",
+  "id": "92092527-3fcb-43cc-97aa-a5331c6a766f",
+  "name": "look-up-member-1042381-and-read-their-credit-score",
+  "description": "Look up member 1042381 and read their credit score",
+  "version": 1,
+  "entry_url": "http://localhost:3000/member-lookup.html1",
+  "allowed_domain": "localhost",
+  "parameters": [
+    {
+      "name": "member_no",
+      "type": "string",
+      "description": "7-digit member number",
+      "required": true,
+      "default": null,
+      "allowed_values": []
+    }
+  ],
+  "outputs": [
+    {
+      "name": "credit_score",
+      "type": "string",
+      "description": "Extracted during discovery: credit_score",
+      "source_locator": {
+        "role": "",
+        "name": "",
+        "label": "Credit Score",
+        "nth": null,
+        "html_name": null,
+        "html_id": null,
+        "title": null,
+        "resolved_via": "xpath_value_cell",
+        "frame_url": "http://localhost:3000/member-detail.html?id=1042381",
+        "rationale": "Using the label parameter to read the value adjacent to the 'Credit Score' label in the table layout."
+      }
+    },
+    {
+      "name": "member_number",
+      "type": "string",
+      "description": "Extracted during discovery: member_number",
+      "source_locator": null
+    },
+    {
+      "name": "member_name",
+      "type": "string",
+      "description": "Extracted during discovery: member_name",
+      "source_locator": null
+    }
+  ],
+  "steps": [
+    {
+      "step_index": 0,
+      "description": "Navigate to http://localhost:3000/member-lookup.html",
+      "action": {
+        "type": "navigate",
+        "url": "http://localhost:3000/member-lookup.html",
+        "url_template": null
+      },
+      "expected_url_contains": "http://localhost:3000/member-lookup.html",
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 1,
+      "description": "Type \"1042381\" into \"Member Number\"",
+      "action": {
+        "type": "type",
+        "locator": {
+          "role": "textbox",
+          "name": "Member Number",
+          "label": null,
+          "nth": null,
+          "html_name": "mem_no",
+          "html_id": null,
+          "title": null,
+          "resolved_via": "xpath_proximity",
+          "frame_url": "http://localhost:3000/member-lookup.html",
+          "rationale": "Entering the member number 1042381 to look up the member's credit score."
+        },
+        "value": "{member_no}",
+        "sensitive": false,
+        "append": false
+      },
+      "expected_url_contains": null,
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 2,
+      "description": "Click \"Search Member\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "button",
+          "name": "Search Member",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/member-lookup.html",
+          "rationale": "Clicking the Search Member button to search for member 1042381 and retrieve their credit score."
+        },
+        "irreversible": false
+      },
+      "expected_url_contains": "http://localhost:3000/member-lookup.html",
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 3,
+      "description": "Click \"View\"",
+      "action": {
+        "type": "click",
+        "locator": {
+          "role": "link",
+          "name": "View",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/member-lookup.html",
+          "rationale": "Clicking the View link to access the detailed member profile where the credit score should be displayed."
+        },
+        "irreversible": false
+      },
+      "expected_url_contains": "http://localhost:3000/member-lookup.html",
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 4,
+      "description": "Read \"credit_score\" from \"734\"",
+      "action": {
+        "type": "read",
+        "output_key": "credit_score",
+        "locator": {
+          "role": "",
+          "name": "734",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "resolved_via": "xpath_value_cell",
+          "frame_url": "http://localhost:3000/member-detail.html?id=1042381",
+          "rationale": "Reading the credit score value for member 1042381 from the Member Detail view."
+        }
+      },
+      "expected_url_contains": null,
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 5,
+      "description": "Read \"credit_score\" from \"Credit Score\"",
+      "action": {
+        "type": "read",
+        "output_key": "credit_score",
+        "locator": {
+          "role": "cell",
+          "name": "Credit Score",
+          "label": null,
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "resolved_via": "role_name_exact",
+          "frame_url": "http://localhost:3000/member-detail.html?id=1042381",
+          "rationale": "Reading the credit score value by targeting the cell labeled 'Credit Score' to get the correct adjacent value."
+        }
+      },
+      "expected_url_contains": null,
+      "expected_element": null,
+      "agent_reasoning": ""
+    },
+    {
+      "step_index": 6,
+      "description": "Read \"credit_score\" from \"Credit Score\"",
+      "action": {
+        "type": "read",
+        "output_key": "credit_score",
+        "locator": {
+          "role": "",
+          "name": "",
+          "label": "Credit Score",
+          "nth": null,
+          "html_name": null,
+          "html_id": null,
+          "title": null,
+          "resolved_via": "xpath_value_cell",
+          "frame_url": "http://localhost:3000/member-detail.html?id=1042381",
+          "rationale": "Using the label parameter to read the value adjacent to the 'Credit Score' label in the table layout."
+        }
+      },
+      "expected_url_contains": null,
+      "expected_element": null,
+      "agent_reasoning": ""
+    }
+  ],
+  "checkpoint": {
+    "description": "Member Detail view shows \"Credit Score 734\" in the Account Summary section for Marcus Delacroix (member 1042381).",
+    "url_contains": null,
+    "element_visible": null,
+    "text_visible": "734"
+  },
+  "discovered_at": "2026-11-14T02:59:04.295236+00:00",
+  "goal": "Look up member 1042381 and read their credit score",
+  "total_discovery_steps": 8
+}

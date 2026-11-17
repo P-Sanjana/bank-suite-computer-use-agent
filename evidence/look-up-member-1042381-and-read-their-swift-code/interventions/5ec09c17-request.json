@@ -1,0 +1,13 @@
+{
+  "id": "5ec09c17",
+  "reason": "STUCK",
+  "description": "I have successfully looked up member 1042381 (Marcus Delacroix) and navigated to the member detail page. The page displays personal information (name, DOB, SSN, address, phone, email) and account summary (open accounts, active CCs, credit score, income) but there is no SWIFT code field visible in the accessibility tree. I've tried viewing the page both in the iframe and by navigating directly to the detail page URL, and waited for content to load, but the SWIFT code is not present in any of the visible fields. The SWIFT code may be located on a different page/tab, require additional navigation steps, or may not be available for this member.",
+  "current_step": "Looking for SWIFT code on member detail page",
+  "suggested_action": "A human operator should verify if: 1) The SWIFT code is on a different page or tab that needs to be accessed, 2) Additional permissions or actions are needed to view the SWIFT code, 3) The SWIFT code field exists but is not being rendered in the accessibility tree, or 4) This member does not have a SWIFT code associated with their account.",
+  "goal": "Look up member 1042381 and read their SWIFT code",
+  "entry_url": "http://localhost:3000/member-lookup.html",
+  "current_url": "http://localhost:3000/member-detail.html?id=1042381",
+  "screenshot_path": "evidence\\look-up-member-1042381-and-read-their-swift-code\\interventions\\5ec09c17-screenshot.png",
+  "created_at": "2026-11-14T23:23:37.977162+00:00",
+  "status": "pending"
+}

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bank Suite - New CC Application</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-logo">Bank Suite</div>
+  <div class="topbar-nav">
+    <a href="queue.html" class="nav-link nav-active">CC Applications</a>
+    <a href="member-lookup.html" class="nav-link">Member Lookup</a>
+    <a href="reports.html" class="nav-link">Reports</a>
+  </div>
+  <div class="topbar-user">Bank Back-Office Staff</div>
+</nav>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td width="170" valign="top" class="sidebar">
+      <div class="sidebar-hdr">Application Steps</div>
+      <table cellpadding="4" cellspacing="0" border="0" width="100%">
+        <tr><td class="step-indicator step-active" id="step-ind-1">1. Applicant Info</td></tr>
+        <tr><td class="step-indicator step-pending" id="step-ind-2">2. Employment</td></tr>
+        <tr><td class="step-indicator step-pending" id="step-ind-3">3. Product Selection</td></tr>
+        <tr><td class="step-indicator step-pending" id="step-ind-4">4. Declarations</td></tr>
+        <tr><td class="step-indicator step-pending" id="step-ind-5">5. Review &amp; Submit</td></tr>
+      </table>
+      <div style="padding:8px; font-size:11px; color:#666; border-top:1px solid #ddd; margin-top:8px;">
+        Required fields marked <span class="req-star">*</span>
+      </div>
+    </td>
+
+    <td valign="top" class="main-content">
+      <div class="page-title">New Credit Card Application</div>
+      <div class="breadcrumb">Home &gt; CC Applications &gt; New Application</div>
+
+      <div id="global-err" class="err-msg" style="display:none"></div>
+      <div id="global-warn" class="warn-msg" style="display:none"></div>
+
+      <!-- ====== STEP 1: Applicant Info ====== -->
+      <div id="step-1">
+        <table cellpadding="0" cellspacing="0" border="1" bordercolor="#b0b8c8" width="100%" class="panel-tbl">
+          <tr class="panel-hdr-row"><td colspan="4" class="panel-hdr">Step 1 &mdash; Applicant Information</td></tr>
+          <tr>
+            <td class="form-lbl-cell" width="140">Member Number <span class="req-star">*</span></td>
+            <td width="200"><input type="text" name="app_mem_no" required class="inp-txt" size="18" maxlength="7"></td>
+            <td width="20"></td>
+            <td>
+              <input type="button" value="Lookup Member" class="btn-sm" onclick="autoFillMember()">
+              &nbsp;
+              <span id="member-found-indicator" style="display:none; color:green; font-size:11px">&#10003; Member found</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">First Name <span class="req-star">*</span></td>
+            <td><input type="text" name="app_fname" required class="inp-txt" size="18"></td>
+            <td></td>
+            <td class="form-lbl-cell" style="width:120px">Middle Initial</td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">Last Name <span class="req-star">*</span></td>
+            <td><input type="text" name="app_lname" required class="inp-txt" size="18"></td>
+            <td></td>
+            <!-- Middle initial field is ACROSS from last name, not its own label row -->
+            <td><input type="text" name="app_mi" class="inp-txt" size="3" maxlength="1"></td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">Date of Birth <span class="req-star">*</span></td>
+            <td><input type="text" name="app_dob" required class="inp-txt" size="18" placeholder="MM/DD/YYYY"></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">SSN <span class="req-star">*</span></td>
+            <td>
+              <!-- SSN split across 3 inputs, no group label -->
+              <input type="password" name="ssn_pt1" required class="inp-txt inp-ssn" size="3" maxlength="3" placeholder="XXX">
+              &nbsp;-&nbsp;
+              <input type="password" name="ssn_pt2" required class="inp-txt inp-ssn" size="2" maxlength="2" placeholder="XX">
+              &nbsp;-&nbsp;
+              <input type="password" name="ssn_pt3" required class="inp-txt inp-ssn" size="4" maxlength="4" placeholder="XXXX">
+            </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">Citizenship <span class="req-star">*</span></td>
+            <td colspan="3">
+              <!-- Radios: no fieldset/legend -->
+              <input type="radio" name="citizenship" value="US"> US Citizen &nbsp;&nbsp;
+              <input type="radio" name="citizenship" value="PR"> Permanent Resident &nbsp;&nbsp;
+              <input type="radio" name="citizenship" value="OT"> Other (attach docs)
+            </td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">Address Line 1 <span class="req-star">*</span></td>
+            <td colspan="3"><input type="text" required name="app_addr1" class="inp-txt" size="50"></td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">Address Line 2</td>
+            <td colspan="3"><input type="text" name="app_addr2" class="inp-txt" size="50"></td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">City <span class="req-star">*</span></td>
+            <td><input type="text" name="app_city" required class="inp-txt" size="18"></td>
+            <td class="form-lbl-cell" style="padding-left:8px">State <span class="req-star">*</span></td>
+            <td>
+              <select name="app_state" required class="inp-sel">
+                <option value="">--</option>
+                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
+                <option>CA</option><option>CO</option><option>CT</option><option>DE</option>
+                <option>FL</option><option>GA</option><option>HI</option><option>ID</option>
+                <option>IL</option><option>IN</option><option>IA</option><option>KS</option>
+                <option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                <option>MA</option><option>MI</option><option>MN</option><option>MS</option>
+                <option>MO</option><option>MT</option><option>NE</option><option>NV</option>
+                <option>NH</option><option>NJ</option><option>NM</option><option>NY</option>
+                <option>NC</option><option>ND</option><option>OH</option><option>OK</option>
+                <option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                <option>SD</option><option>TN</option><option>TX</option><option>UT</option>
+                <option>VT</option><option>VA</option><option>WA</option><option>WV</option>
+                <option>WI</option><option>WY</option>
+              </select>
+              &nbsp; ZIP: <input type="text" name="app_zip" class="inp-txt" size="6" maxlength="10">
+            </td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">Phone <span class="req-star">*</span></td>
+            <td><input type="text" required name="app_phone" class="inp-txt" size="18" placeholder="(XXX) XXX-XXXX"></td>
+            <td class="form-lbl-cell" style="padding-left:8px">Email</td>
+            <td><input type="text" name="app_email" class="inp-txt" size="28"></td>
+          </tr>
+          <tr>
+            <td colspan="4" align="right" class="panel-action-row">
+              <input type="button" value="Next: Employment &gt;" class="btn-primary" onclick="nextStep(1)">
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- ====== STEP 2: Employment ====== -->
+      <div id="step-2" style="display:none">
+        <table cellpadding="0" cellspacing="0" border="1" bordercolor="#b0b8c8" width="100%" class="panel-tbl">
+          <tr class="panel-hdr-row"><td colspan="4" class="panel-hdr">Step 2 &mdash; Employment &amp; Income</td></tr>
+          <tr>
+            <td class="form-lbl-cell" width="140">Employment Status <span class="req-star">*</span></td>
+            <td colspan="3">
+              <select name="emp_status" class="inp-sel" onchange="toggleEmpFields(this.value)">
+                <option value="">-- Select --</option>
+                <option value="FT">Full-Time Employed</option>
+                <option value="PT">Part-Time Employed</option>
+                <option value="SE">Self-Employed</option>
+                <option value="RE">Retired</option>
+                <option value="UN">Unemployed</option>
+                <option value="ST">Student</option>
+              </select>
+            </td>
+          </tr>
+          <tr id="emp-employer-row">
+            <td class="form-lbl-cell">Employer Name <span class="req-star">*</span></td>
+            <td colspan="3"><input type="text" name="emp_name" class="inp-txt" size="40"></td>
+          </tr>
+          <tr id="emp-title-row">
+            <td class="form-lbl-cell">Job Title</td>
+            <td><input type="text" name="emp_title" class="inp-txt" size="22"></td>
+            <td class="form-lbl-cell" style="padding-left:8px">Years Employed <span class="req-star">*</span></td>
+            <td><input type="text" name="emp_years" class="inp-txt" size="5"></td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">Gross Annual Income <span class="req-star">*</span></td>
+            <td><input type="text" name="emp_income" class="inp-txt" size="18" placeholder="e.g. 55000"></td>
+            <td class="form-lbl-cell" style="padding-left:8px">Other Income</td>
+            <td><input type="text" name="emp_other_income" class="inp-txt" size="18" placeholder="e.g. 0"></td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">Other Income Source</td>
+            <td colspan="3"><input type="text" name="emp_other_src" class="inp-txt" size="40" placeholder="e.g. rental income, investments"></td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">Monthly Rent/Mortgage <span class="req-star">*</span></td>
+            <td><input type="text" name="emp_housing" class="inp-txt" size="18" placeholder="e.g. 1200"></td>
+            <td></td><td></td>
+          </tr>
+          <tr>
+            <td colspan="4" align="right" class="panel-action-row">
+              <input type="button" value="&lt; Back" class="btn-secondary" onclick="prevStep(2)">
+              &nbsp;
+              <input type="button" value="Next: Product &gt;" class="btn-primary" onclick="nextStep(2)">
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- ====== STEP 3: Product Selection ====== -->
+      <div id="step-3" style="display:none">
+        <table cellpadding="0" cellspacing="0" border="1" bordercolor="#b0b8c8" width="100%" class="panel-tbl">
+          <tr class="panel-hdr-row"><td colspan="4" class="panel-hdr">Step 3 &mdash; Product Selection</td></tr>
+          <tr>
+            <td class="form-lbl-cell" width="140">Card Type <span class="req-star">*</span></td>
+            <td colspan="3">
+              <select name="card_type" class="inp-sel">
+                <option value="">-- Select Card --</option>
+                <option value="BASIC">Basic Rewards (No Annual Fee)</option>
+                <option value="GOLD">Gold Rewards ($95/yr)</option>
+                <option value="PLAT">Platinum Elite ($195/yr)</option>
+                <option value="SEC">Secured Card (Deposit Required)</option>
+                <option value="BIZ">Business Card</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">Requested Credit Limit <span class="req-star">*</span></td>
+            <td colspan="3">
+              <select name="req_limit" class="inp-sel">
+                <option value="">-- Select --</option>
+                <option value="500">$500</option>
+                <option value="1000">$1,000</option>
+                <option value="2500">$2,500</option>
+                <option value="5000">$5,000</option>
+                <option value="7500">$7,500</option>
+                <option value="10000">$10,000</option>
+                <option value="15000">$15,000</option>
+                <option value="25000">$25,000</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">Balance Transfer</td>
+            <td colspan="3">
+              <input type="radio" name="bal_transfer" value="N" checked> No &nbsp;&nbsp;
+              <input type="radio" name="bal_transfer" value="Y"> Yes &mdash; Amount: $
+              <input type="text" name="bal_transfer_amt" class="inp-txt" size="10" disabled>
+            </td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell">Authorized Users</td>
+            <td colspan="3">
+              <input type="text" name="auth_user_1" class="inp-txt" size="25" placeholder="Name (optional)">
+              &nbsp;
+              <input type="text" name="auth_user_2" class="inp-txt" size="25" placeholder="Name (optional)">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" align="right" class="panel-action-row">
+              <input type="button" value="&lt; Back" class="btn-secondary" onclick="prevStep(3)">
+              &nbsp;
+              <input type="button" value="Next: Declarations &gt;" class="btn-primary" onclick="nextStep(3)">
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- ====== STEP 4: Declarations ====== -->
+      <div id="step-4" style="display:none">
+        <table cellpadding="0" cellspacing="0" border="1" bordercolor="#b0b8c8" width="100%" class="panel-tbl">
+          <tr class="panel-hdr-row"><td colspan="2" class="panel-hdr">Step 4 &mdash; Declarations &amp; Consents</td></tr>
+          <tr>
+            <td width="30" valign="top"><input type="checkbox" name="decl_accurate"></td>
+            <td class="decl-text">I certify that all information provided in this application is true and accurate to the best of my knowledge.</td>
+          </tr>
+          <tr>
+            <td valign="top"><input type="checkbox" name="decl_credit_pull"></td>
+            <td class="decl-text">I authorize First National Bancorp to obtain my credit report for purposes of evaluating this application.</td>
+          </tr>
+          <tr>
+            <td valign="top"><input type="checkbox" name="decl_terms"></td>
+            <td class="decl-text">I have read and agree to the <a href="#" class="action-link">Cardholder Agreement</a> and <a href="#" class="action-link">Privacy Notice</a>.</td>
+          </tr>
+          <tr>
+            <td valign="top"><input type="checkbox" name="decl_bankruptcy"></td>
+            <td class="decl-text">I declare that I have NOT filed for bankruptcy in the past 7 years, and have no pending bankruptcy proceedings.</td>
+          </tr>
+          <tr>
+            <td valign="top"><input type="checkbox" name="decl_marketing" checked></td>
+            <td class="decl-text">I agree to receive marketing communications from First National Bancorp (optional &mdash; uncheck to opt out).</td>
+          </tr>
+          <tr>
+            <td class="form-lbl-cell" valign="top" style="padding-top:8px">Staff Notes</td>
+            <td>
+              <textarea name="staff_notes" class="inp-textarea" rows="3" cols="60" placeholder="Internal notes (not visible to applicant)..."></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" align="right" class="panel-action-row">
+              <input type="button" value="&lt; Back" class="btn-secondary" onclick="prevStep(4)">
+              &nbsp;
+              <input type="button" value="Next: Review &gt;" class="btn-primary" onclick="nextStep(4)">
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- ====== STEP 5: Review & Submit ====== -->
+      <div id="step-5" style="display:none">
+        <table cellpadding="0" cellspacing="0" border="1" bordercolor="#b0b8c8" width="100%" class="panel-tbl">
+          <tr class="panel-hdr-row"><td colspan="4" class="panel-hdr">Step 5 &mdash; Review &amp; Submit</td></tr>
+          <tr>
+            <td colspan="4">
+              <div id="review-summary" class="review-box">
+                <!-- Filled by JS -->
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" class="panel-action-row" align="right">
+              <input type="button" value="&lt; Back" class="btn-secondary" onclick="prevStep(5)">
+              &nbsp;
+              <input type="button" value="Submit Application" class="btn-primary btn-submit" onclick="submitApp()">
+              &nbsp;
+              <input type="button" value="Save Draft" class="btn-secondary" onclick="saveDraft()">
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Success message (hidden) -->
+      <div id="submit-success" style="display:none" class="success-panel">
+        <table cellpadding="8" cellspacing="0" border="0" width="100%">
+          <tr>
+            <td align="center">
+              <div class="success-icon">&#10003;</div>
+              <div class="success-title">Application Submitted Successfully</div>
+              <div class="success-appid">Application ID: <strong id="new-app-id"></strong></div>
+              <div style="margin-top:10px; font-size:12px; color:#555;">
+                The application has been added to the review queue and a confirmation has been sent to the member.
+              </div>
+              <div style="margin-top:14px;">
+                <input type="button" value="Return to Queue" class="btn-primary" onclick="window.location.href='queue.html'">
+                &nbsp;
+                <input type="button" value="New Application" class="btn-secondary" onclick="window.location.reload()">
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </td>
+  </tr>
+</table>
+
+<script src="app.js"></script>
+<script>
+
+
+// Pre-fill from member lookup if query param present
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var memId = params.get('member');
+  if (memId) {
+    document.querySelector('input[name="app_mem_no"]').value = memId;
+    setTimeout(function(){ autoFillMember(); }, 200);
+  }
+})();
+
+function autoFillMember() {
+  var memNo = document.querySelector('input[name="app_mem_no"]').value.trim();
+  var err = document.getElementById('global-err');
+  err.style.display = 'none';
+  if (!memNo) { err.style.display='block'; err.textContent='Enter a member number to look up.'; return; }
+  var members = getMembers();
+  var m = members.find(function(x){ return x.memberNo === memNo; });
+  if (!m) { err.style.display='block'; err.textContent='ERROR: Member not found: ' + memNo; return; }
+  document.querySelector('input[name="app_fname"]').value = m.firstName;
+  document.querySelector('input[name="app_lname"]').value = m.lastName;
+  document.querySelector('input[name="app_dob"]').value   = m.dob;
+  document.querySelector('input[name="app_phone"]').value = m.phone;
+  document.querySelector('input[name="app_email"]').value = m.email;
+  document.querySelector('input[name="app_addr1"]').value = m.address;
+  document.getElementById('member-found-indicator').style.display = 'inline';
+}
+
+function toggleEmpFields(val) {
+  var hide = ['UN','ST','RE'].indexOf(val) >= 0;
+  document.getElementById('emp-employer-row').style.display = hide ? 'none' : '';
+  document.getElementById('emp-title-row').style.display    = hide ? 'none' : '';
+}
+
+// Balance transfer toggle
+document.querySelectorAll('input[name="bal_transfer"]').forEach(function(r){
+  r.addEventListener('change', function(){
+    document.querySelector('input[name="bal_transfer_amt"]').disabled = (this.value === 'N');
+  });
+});
+
+var currentStep = 1;
+
+function nextStep(from) {
+  var err = document.getElementById('global-err');
+  err.style.display = 'none';
+
+  // Step-specific validation
+  if (from === 1) {
+    var fname = document.querySelector('input[name="app_fname"]').value.trim();
+    var lname = document.querySelector('input[name="app_lname"]').value.trim();
+    var dob   = document.querySelector('input[name="app_dob"]').value.trim();
+    var addr  = document.querySelector('input[name="app_addr1"]').value.trim();
+    var phone = document.querySelector('input[name="app_phone"]').value.trim();
+    var cit   = document.querySelector('input[name="citizenship"]:checked');
+    var city  = document.querySelector('input[name="app_city"]').value.trim();
+    var state = document.querySelector('select[name="app_state"]').value.trim();
+    if (!fname || !lname || !dob || !addr || !phone || !cit || !city || !state) {
+      err.style.display = 'block';
+      err.textContent = 'ERROR: Please complete all required fields before proceeding.';
+      return;
+    }
+    // Deterministic error triggers
+    if (dob === '01/01/1900') {
+      err.style.display = 'block';
+      err.textContent = 'ERROR [VDOB-001]: Date of birth is invalid. Cannot be before 01/01/1920.';
+      return;
+    }
+  }
+  if (from === 2) {
+    var income = document.querySelector('input[name="emp_income"]').value.trim();
+    var empSt  = document.querySelector('select[name="emp_status"]').value;
+    var rent   = document.querySelector('input[name="emp_housing"]').value.trim();
+    if (!empSt || !income || !rent) {
+      err.style.display = 'block';
+      err.textContent = 'ERROR: Employment status and gross annual income are required.';
+      return;
+    }
+    if (parseInt(income) < 0) {
+      err.style.display = 'block';
+      err.textContent = 'ERROR [VINC-002]: Income cannot be negative.';
+      return;
+    }
+    // Trigger: income exactly 99999 triggers system warning
+    if (income === '99999') {
+      document.getElementById('global-warn').style.display = 'block';
+      document.getElementById('global-warn').textContent =
+        'WARNING: Income figure requires verification. Supervisor review may be triggered.';
+    }
+  }
+  if (from === 3) {
+    var cardType = document.querySelector('select[name="card_type"]').value;
+    var lim      = document.querySelector('select[name="req_limit"]').value;
+    if (!cardType || !lim) {
+      err.style.display = 'block';
+      err.textContent = 'ERROR: Card type and requested credit limit are required.';
+      return;
+    }
+  }
+  if (from === 4) {
+    var decls = ['decl_accurate','decl_credit_pull','decl_terms','decl_bankruptcy'];
+    for (var i=0; i<decls.length; i++) {
+      if (!document.querySelector('input[name="' + decls[i] + '"]').checked) {
+        err.style.display = 'block';
+        err.textContent = 'ERROR: All required declarations must be acknowledged before proceeding.';
+        return;
+      }
+    }
+    buildReviewSummary();
+  }
+
+  goToStep(from + 1);
+}
+
+function prevStep(from) {
+  document.getElementById('global-err').style.display = 'none';
+  goToStep(from - 1);
+}
+
+function goToStep(n) {
+  for (var i=1; i<=5; i++) {
+    document.getElementById('step-' + i).style.display = (i === n) ? '' : 'none';
+    var ind = document.getElementById('step-ind-' + i);
+    ind.className = 'step-indicator ' + (i < n ? 'step-done' : i === n ? 'step-active' : 'step-pending');
+  }
+  currentStep = n;
+}
+
+function buildReviewSummary() {
+  var f = function(name){ var el = document.querySelector('[name="' + name + '"]'); return el ? el.value : ''; };
+  var cb= function(name){ var el = document.querySelector('input[name="' + name + '"]'); return el && el.checked ? 'Yes' : 'No'; };
+  var rc= function(name){ var el = document.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : '&mdash;'; };
+
+  document.getElementById('review-summary').innerHTML =
+    '<table cellpadding="4" cellspacing="0" border="0" width="100%" class="review-inner-tbl">' +
+    '<tr class="tbl-hdr"><td colspan="4">Applicant Information</td></tr>' +
+    '<tr class="row-even"><td class="form-lbl-cell" width="160">Name</td><td>' + f('app_fname') + ' ' + f('app_mi') + ' ' + f('app_lname') + '</td>' +
+    '<td class="form-lbl-cell" width="120">DOB</td><td>' + f('app_dob') + '</td></tr>' +
+    '<tr class="row-odd"><td class="form-lbl-cell">Member #</td><td>' + f('app_mem_no') + '</td>' +
+    '<td class="form-lbl-cell">Citizenship</td><td>' + rc('citizenship') + '</td></tr>' +
+    '<tr class="row-even"><td class="form-lbl-cell">Address</td><td colspan="3">' + f('app_addr1') + (f('app_addr2') ? ', ' + f('app_addr2') : '') + ', ' + f('app_city') + ' ' + f('app_state') + ' ' + f('app_zip') + '</td></tr>' +
+    '<tr class="row-odd"><td class="form-lbl-cell">Phone</td><td>' + f('app_phone') + '</td><td class="form-lbl-cell">Email</td><td>' + f('app_email') + '</td></tr>' +
+    '<tr class="tbl-hdr"><td colspan="4">Employment &amp; Income</td></tr>' +
+    '<tr class="row-even"><td class="form-lbl-cell">Status</td><td>' + f('emp_status') + '</td>' +
+    '<td class="form-lbl-cell">Employer</td><td>' + (f('emp_name') || '&mdash;') + '</td></tr>' +
+    '<tr class="row-odd"><td class="form-lbl-cell">Annual Income</td><td>$' + (parseInt(f('emp_income'))||0).toLocaleString() + '</td>' +
+    '<td class="form-lbl-cell">Other Income</td><td>$' + (parseInt(f('emp_other_income'))||0).toLocaleString() + '</td></tr>' +
+    '<tr class="tbl-hdr"><td colspan="4">Product</td></tr>' +
+    '<tr class="row-even"><td class="form-lbl-cell">Card Type</td><td>' + f('card_type') + '</td>' +
+    '<td class="form-lbl-cell">Requested Limit</td><td>$' + (parseInt(f('req_limit'))||0).toLocaleString() + '</td></tr>' +
+    '</table>';
+}
+
+function submitApp() {
+  var newId = 'APP-' + String(Date.now()).slice(-7);
+  var apps = getApplications();
+  var fname = document.querySelector('input[name="app_fname"]').value.trim();
+  var lname = document.querySelector('input[name="app_lname"]').value.trim();
+
+  // Deterministic error: limit > 25000 without platinum
+  var cardType = document.querySelector('select[name="card_type"]').value;
+  var lim      = parseInt(document.querySelector('select[name="req_limit"]').value);
+  if (lim >= 25000 && cardType !== 'PLAT' && cardType !== 'BIZ') {
+    document.getElementById('global-err').style.display = 'block';
+    document.getElementById('global-err').textContent =
+      'ERROR [SLIM-005]: Credit limit over $15,000 requires Platinum Elite or Business card type.';
+    prevStep(5); prevStep(4); goToStep(3);
+    return;
+  }
+
+  apps.push({
+    id: newId,
+    firstName: fname,
+    lastName: lname,
+    submitted: new Date().toLocaleDateString('en-US'),
+    requestedLimit: lim,
+    score: Math.floor(Math.random() * 300 + 550),
+    status: 'PENDING',
+    assignedTo: 'STAFF'
+  });
+  saveApplications(apps);
+
+  document.getElementById('new-app-id').textContent = newId;
+  for (var i=1; i<=5; i++) document.getElementById('step-'+i).style.display='none';
+  document.getElementById('submit-success').style.display = 'block';
+}
+
+function saveDraft() {
+  alert('Draft saved. Application ID pending assignment until submission.');
+}
+</script>
+</body>
+</html>

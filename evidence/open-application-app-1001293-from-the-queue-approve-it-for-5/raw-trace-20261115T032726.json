@@ -1,0 +1,12 @@
+{
+  "goal": "Open application APP-1001293 from the queue, approve it for $5000 with officer notes 'Score and DTI within policy', and reach the Decision Recorded screen",
+  "entry_url": "http://localhost:3000/queue.html",
+  "started_at": "2026-11-15T03:27:25.978445+00:00",
+  "outcome_type": "failed",
+  "steps": [],
+  "total_steps": 0,
+  "completed_at": "2026-11-15T03:27:26.610030+00:00",
+  "declared_outputs": null,
+  "checkpoint_evidence": null,
+  "handoffs": null
+}

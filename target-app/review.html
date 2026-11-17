@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bank Suite - Application Review</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-logo">Bank Suite</div>
+  <div class="topbar-nav">
+    <a href="queue.html" class="nav-link nav-active">CC Applications</a>
+    <a href="member-lookup.html" class="nav-link">Member Lookup</a>
+    <a href="reports.html" class="nav-link">Reports</a>
+  </div>
+  <div class="topbar-user">Bank Back-Office Staff</div>
+</nav>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td width="170" valign="top" class="sidebar">
+      <div class="sidebar-hdr">Review Actions</div>
+      <table cellpadding="4" cellspacing="0" border="0" width="100%">
+        <tr><td><a href="#applicant-section" class="sb-link">&#9658; Applicant Info</a></td></tr>
+        <tr><td><a href="#employment-section" class="sb-link">&#9658; Employment</a></td></tr>
+        <tr><td><a href="#credit-section" class="sb-link">&#9658; Credit Analysis</a></td></tr>
+        <tr><td><a href="#decision-section" class="sb-link">&#9658; Decision Panel</a></td></tr>
+      </table>
+      <div style="border-top:1px solid #ddd; margin-top:8px; padding:8px;">
+        <div class="sidebar-hdr" style="font-size:11px">Audit Log</div>
+        <div id="audit-log" style="font-size:10px; color:#555; max-height:140px; overflow-y:auto;"></div>
+      </div>
+    </td>
+
+    <td valign="top" class="main-content">
+      <div id="review-err" class="err-msg" style="display:none"></div>
+      <div id="review-warn" class="warn-msg" style="display:none"></div>
+
+      <!-- Application Header -->
+      <table width="100%" cellpadding="4" cellspacing="0" border="0" class="app-header-tbl">
+        <tr>
+          <td class="page-title">Application Review</td>
+          <td align="right">
+            <input type="button" value="&lt; Back to Queue" class="btn-secondary" onclick="window.location.href='queue.html'">
+          </td>
+        </tr>
+      </table>
+      <div class="breadcrumb">Home &gt; CC Applications &gt; Queue &gt; Review</div>
+
+      <!-- App summary bar -->
+      <table width="100%" cellpadding="5" cellspacing="0" border="1" bordercolor="#003366" class="app-summary-bar" id="app-summary-bar">
+        <tr>
+          <td class="form-lbl-cell" width="80">App ID</td>
+          <td class="cell-mono" id="rv-appid" width="120">&mdash;</td>
+          <td class="form-lbl-cell" width="100">Applicant</td>
+          <td id="rv-name" width="180">&mdash;</td>
+          <td class="form-lbl-cell" width="80">Submitted</td>
+          <td id="rv-submitted" width="100">&mdash;</td>
+          <td class="form-lbl-cell" width="70">Status</td>
+          <td id="rv-status">&mdash;</td>
+        </tr>
+      </table>
+
+      <!-- Applicant Detail Section -->
+      <a name="applicant-section"></a>
+      <table cellpadding="0" cellspacing="0" border="1" bordercolor="#b0b8c8" width="100%" class="panel-tbl" style="margin-top:10px">
+        <tr class="panel-hdr-row">
+          <td colspan="4" class="panel-hdr">
+            Applicant Information
+            <span style="float:right; font-weight:normal; font-size:11px">
+              <a href="#" class="panel-toggle" onclick="togglePanel('applicant-body');return false;">&#9660; collapse</a>
+            </span>
+          </td>
+        </tr>
+        <tbody id="applicant-body">
+          <tr class="row-even">
+            <td class="form-lbl-cell" width="140">Member Number</td><td id="rv-memno" width="180">&mdash;</td>
+            <td class="form-lbl-cell" width="120">Credit Score</td><td id="rv-score" width="120">&mdash;</td>
+          </tr>
+          <tr class="row-odd">
+            <td class="form-lbl-cell">Full Name</td><td id="rv-fullname">&mdash;</td>
+            <td class="form-lbl-cell">Date of Birth</td><td id="rv-dob">&mdash;</td>
+          </tr>
+          <tr class="row-even">
+            <td class="form-lbl-cell">SSN</td><td class="cell-mono" id="rv-ssn">&mdash;</td>
+            <td class="form-lbl-cell">Citizenship</td><td id="rv-citizen">&mdash;</td>
+          </tr>
+          <tr class="row-odd">
+            <td class="form-lbl-cell">Address</td><td colspan="3" id="rv-address">&mdash;</td>
+          </tr>
+          <tr class="row-even">
+            <td class="form-lbl-cell">Phone</td><td id="rv-phone">&mdash;</td>
+            <td class="form-lbl-cell">Email</td><td id="rv-email">&mdash;</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Employment -->
+      <a name="employment-section"></a>
+      <table cellpadding="0" cellspacing="0" border="1" bordercolor="#b0b8c8" width="100%" class="panel-tbl" style="margin-top:8px">
+        <tr class="panel-hdr-row">
+          <td colspan="4" class="panel-hdr">Employment &amp; Income</td>
+        </tr>
+        <tr class="row-even">
+          <td class="form-lbl-cell" width="140">Employment Status</td><td id="rv-empstatus" width="180">&mdash;</td>
+          <td class="form-lbl-cell" width="120">Employer</td><td id="rv-employer">&mdash;</td>
+        </tr>
+        <tr class="row-odd">
+          <td class="form-lbl-cell">Annual Income</td><td id="rv-income">&mdash;</td>
+          <td class="form-lbl-cell">Housing Cost/Mo</td><td id="rv-housing">&mdash;</td>
+        </tr>
+        <tr class="row-even">
+          <td class="form-lbl-cell">Debt-to-Income</td><td id="rv-dti" colspan="3">&mdash;</td>
+        </tr>
+      </table>
+
+      <!-- Credit Analysis -->
+      <a name="credit-section"></a>
+      <table cellpadding="0" cellspacing="0" border="1" bordercolor="#b0b8c8" width="100%" class="panel-tbl" style="margin-top:8px">
+        <tr class="panel-hdr-row">
+          <td colspan="6" class="panel-hdr">Credit Analysis</td>
+        </tr>
+        <tr class="tbl-hdr">
+          <td width="120">Factor</td>
+          <td width="100">Value</td>
+          <td width="80">Weight</td>
+          <td width="90">Score Impact</td>
+          <td>Guideline</td>
+          <td width="80">Result</td>
+        </tr>
+        <tr class="row-even">
+          <td>Credit Score</td>
+          <td id="cr-score">&mdash;</td>
+          <td>35%</td>
+          <td id="cr-score-impact">&mdash;</td>
+          <td>Min 620 for approval</td>
+          <td id="cr-score-flag">&mdash;</td>
+        </tr>
+        <tr class="row-odd">
+          <td>Debt-to-Income</td>
+          <td id="cr-dti">&mdash;</td>
+          <td>25%</td>
+          <td id="cr-dti-impact">&mdash;</td>
+          <td>Max 43%</td>
+          <td id="cr-dti-flag">&mdash;</td>
+        </tr>
+        <tr class="row-even">
+          <td>Requested Limit</td>
+          <td id="cr-limit">&mdash;</td>
+          <td>20%</td>
+          <td id="cr-limit-impact">&mdash;</td>
+          <td>Limit &le; 3x monthly income</td>
+          <td id="cr-limit-flag">&mdash;</td>
+        </tr>
+        <tr class="row-odd">
+          <td>Membership Age</td>
+          <td id="cr-memage">&mdash;</td>
+          <td>10%</td>
+          <td id="cr-memage-impact">&mdash;</td>
+          <td>Preferred: &gt; 2 years</td>
+          <td id="cr-memage-flag">&mdash;</td>
+        </tr>
+        <tr class="row-even">
+          <td>Existing CCs</td>
+          <td id="cr-existcc">&mdash;</td>
+          <td>10%</td>
+          <td id="cr-existcc-impact">&mdash;</td>
+          <td>Max 3 active cards</td>
+          <td id="cr-existcc-flag">&mdash;</td>
+        </tr>
+        <tr class="tbl-hdr">
+          <td colspan="3">Automated Recommendation</td>
+          <td colspan="3" id="auto-recommendation">&mdash;</td>
+        </tr>
+      </table>
+
+      <!-- Decision Panel -->
+      <a name="decision-section"></a>
+      <table cellpadding="0" cellspacing="0" border="2" bordercolor="#003366" width="100%" class="panel-tbl decision-panel" style="margin-top:10px" id="decision-panel">
+        <tr class="panel-hdr-row" style="background:#003366">
+          <td colspan="4" class="panel-hdr" style="font-size:14px">&#9997; Decision Panel &mdash; Officer Action Required</td>
+        </tr>
+
+        <tr id="already-decided-row" style="display:none">
+          <td colspan="4" class="warn-msg" style="padding:10px; text-align:center;">
+            This application has already been decided. To change the decision, use the Override function.
+          </td>
+        </tr>
+
+        <tr id="decision-fields-row">
+          <td class="form-lbl-cell" width="160">Decision <span class="req-star">*</span></td>
+          <td colspan="3">
+            <!-- Radios without fieldset -->
+            <input type="radio" name="decision" value="APPROVED" onchange="decisionChanged(this.value)"> Approve &nbsp;&nbsp;
+            <input type="radio" name="decision" value="DECLINED" onchange="decisionChanged(this.value)"> Decline &nbsp;&nbsp;
+            <input type="radio" name="decision" value="ESCALATED" onchange="decisionChanged(this.value)"> Escalate to Senior Officer &nbsp;&nbsp;
+            <input type="radio" name="decision" value="PENDING" onchange="decisionChanged(this.value)"> Request More Info
+          </td>
+        </tr>
+
+        <!-- Approve fields -->
+        <tr id="approve-fields" style="display:none">
+          <td class="form-lbl-cell">Approved Limit <span class="req-star">*</span></td>
+          <td width="200">
+            <select name="approved_limit" class="inp-sel">
+              <option value="">-- Select Limit --</option>
+              <option value="500">$500</option>
+              <option value="1000">$1,000</option>
+              <option value="2500">$2,500</option>
+              <option value="5000">$5,000</option>
+              <option value="7500">$7,500</option>
+              <option value="10000">$10,000</option>
+              <option value="15000">$15,000</option>
+              <option value="25000">$25,000</option>
+            </select>
+          </td>
+          <td class="form-lbl-cell">APR Override</td>
+          <td>
+            <input type="text" name="apr_override" class="inp-txt" size="8" placeholder="e.g. 19.99">
+            % &nbsp;<span style="font-size:11px; color:#666">(leave blank for standard rate)</span>
+          </td>
+        </tr>
+        <tr id="approve-fields-2" style="display:none">
+          <td class="form-lbl-cell">Conditions</td>
+          <td colspan="3">
+            <input type="checkbox" name="cond_income_verify"> Income verification required &nbsp;
+            <input type="checkbox" name="cond_id_verify"> Government ID required &nbsp;
+            <input type="checkbox" name="cond_supervisor"> Supervisor co-sign required
+          </td>
+        </tr>
+
+        <!-- Decline fields -->
+        <tr id="decline-fields" style="display:none">
+          <td class="form-lbl-cell">Decline Reason <span class="req-star">*</span></td>
+          <td colspan="3">
+            <select name="decline_reason" class="inp-sel">
+              <option value="">-- Select Reason --</option>
+              <option value="LOW_SCORE">Credit score below minimum</option>
+              <option value="HIGH_DTI">Debt-to-income ratio too high</option>
+              <option value="INSUF_INC">Insufficient income</option>
+              <option value="NEG_HIST">Negative credit history</option>
+              <option value="POLICY">Does not meet product policy</option>
+              <option value="INCOMPLETE">Incomplete application / missing docs</option>
+              <option value="FRAUD_SUSP">Fraud suspected (report to compliance)</option>
+            </select>
+          </td>
+        </tr>
+
+        <!-- Escalate fields -->
+        <tr id="escalate-fields" style="display:none">
+          <td class="form-lbl-cell">Escalate To <span class="req-star">*</span></td>
+          <td colspan="3">
+            <select name="escalate_to" class="inp-sel">
+              <option value="">-- Select Officer --</option>
+              <option value="MGR001">J. Harrison (Branch Mgr)</option>
+              <option value="SO002">K. Patel (Senior Officer)</option>
+              <option value="COMP01">Compliance Desk</option>
+              <option value="FRAUD1">Fraud Review Team</option>
+            </select>
+          </td>
+        </tr>
+
+        <!-- Common notes -->
+        <tr>
+          <td class="form-lbl-cell" valign="top">Officer Notes <span class="req-star">*</span></td>
+          <td colspan="3">
+            <textarea name="officer_notes" class="inp-textarea" rows="3" cols="70"
+              placeholder="Required: Document your decision rationale..."></textarea>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="4" align="right" class="panel-action-row">
+            <span style="font-size:11px; color:#900; margin-right:10px;">
+              &#9888; Decision actions are irreversible without supervisor override.
+            </span>
+            <input type="button" value="Submit Decision" class="btn-primary btn-submit" onclick="submitDecision()">
+            &nbsp;
+            <input type="button" value="Request Override" class="btn-secondary" onclick="requestOverride()">
+          </td>
+        </tr>
+      </table>
+
+      <!-- Decision confirmed banner -->
+      <div id="decision-confirmed" style="display:none" class="success-panel">
+        <table cellpadding="8" cellspacing="0" border="0" width="100%">
+          <tr>
+            <td align="center">
+              <div class="success-icon" id="dec-icon">&#10003;</div>
+              <div class="success-title" id="dec-title">Decision Recorded</div>
+              <div style="font-size:12px; color:#555; margin-top:6px;" id="dec-detail"></div>
+              <div style="margin-top:12px;">
+                <input type="button" value="Return to Queue" class="btn-primary" onclick="window.location.href='queue.html'">
+                &nbsp;
+                <input type="button" value="Print Notice" class="btn-secondary" onclick="window.print()">
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+    </td>
+  </tr>
+</table>
+
+<script src="app.js"></script>
+<script>
+
+
+var auditEntries = [];
+function addAudit(msg) {
+  var ts = new Date().toLocaleTimeString('en-US',{hour12:false});
+  auditEntries.unshift('[' + ts + '] ' + msg);
+  var log = document.getElementById('audit-log');
+  log.innerHTML = auditEntries.slice(0,20).map(function(e){ return '<div>' + e + '</div>'; }).join('');
+}
+
+// Load application from query param
+var params = new URLSearchParams(window.location.search);
+var appId  = params.get('id');
+var apps   = getApplications();
+var app    = apps.find(function(a){ return a.id === appId; });
+
+if (!app) {
+  document.getElementById('review-err').style.display = 'block';
+  document.getElementById('review-err').textContent = 'ERROR: Application not found: ' + (appId || '(none)');
+} else {
+  // Fill summary bar
+  document.getElementById('rv-appid').textContent     = app.id;
+  document.getElementById('rv-name').textContent      = app.lastName + ', ' + app.firstName;
+  document.getElementById('rv-submitted').textContent = app.submitted;
+  var sEl = document.getElementById('rv-status');
+  sEl.innerHTML = '<span class="status-badge status-' + app.status.toLowerCase() + '">' + app.status + '</span>';
+
+  // If already decided, show warning
+  if (app.status !== 'PENDING') {
+    document.getElementById('already-decided-row').style.display = '';
+  }
+
+  // Find member
+  var members = getMembers();
+  var mem = members.find(function(m){ return m.memberNo === app.memberNo; }) || {};
+
+  // Applicant info
+  document.getElementById('rv-memno').textContent   = app.memberNo || mem.memberNo || '&mdash;';
+  document.getElementById('rv-score').innerHTML     = '<span class="' + scoreClass(app.score) + '">' + app.score + '</span>';
+  document.getElementById('rv-fullname').textContent= app.firstName + ' ' + app.lastName;
+  document.getElementById('rv-dob').textContent     = mem.dob || app.dob || '&mdash;';
+  document.getElementById('rv-ssn').textContent     = mem.ssn4 ? '***-**-' + mem.ssn4 : '&mdash;';
+  document.getElementById('rv-citizen').textContent = 'US Citizen';
+  document.getElementById('rv-address').textContent = mem.address || '&mdash;';
+  document.getElementById('rv-phone').textContent   = mem.phone || '&mdash;';
+  document.getElementById('rv-email').textContent   = mem.email || '&mdash;';
+
+  // Employment
+  var income  = mem.annualIncome || 60000;
+  var housing = Math.round(income * 0.25 / 12);
+  var dti     = Math.round((housing * 12 / income) * 100);
+  document.getElementById('rv-empstatus').textContent = 'Full-Time Employed';
+  document.getElementById('rv-employer').textContent  = mem.employer || 'Employer on file';
+  document.getElementById('rv-income').textContent    = '$' + Number(income).toLocaleString();
+  document.getElementById('rv-housing').textContent   = '$' + Number(housing).toLocaleString();
+  document.getElementById('rv-dti').textContent       = dti + '%';
+
+  // Credit analysis
+  var lim = app.requestedLimit || 2500;
+  var maxLim = Math.round(income / 12 * 3);
+  var memAgeMo = 36; // placeholder
+  var existCCs = mem.activeCCs || 1;
+
+  function setFlag(id, pass) {
+    document.getElementById(id).innerHTML =
+      pass ? '<span style="color:green">&#10003; Pass</span>' : '<span style="color:red">&#10007; Fail</span>';
+  }
+  document.getElementById('cr-score').textContent       = app.score;
+  document.getElementById('cr-score-impact').textContent= app.score >= 720 ? 'High' : app.score >= 620 ? 'Medium' : 'Low';
+  setFlag('cr-score-flag', app.score >= 620);
+
+  document.getElementById('cr-dti').textContent       = dti + '%';
+  document.getElementById('cr-dti-impact').textContent= dti <= 30 ? 'Low' : dti <= 43 ? 'Medium' : 'High';
+  setFlag('cr-dti-flag', dti <= 43);
+
+  document.getElementById('cr-limit').textContent        = '$' + Number(lim).toLocaleString();
+  document.getElementById('cr-limit-impact').textContent = lim <= maxLim ? 'Low' : 'High';
+  setFlag('cr-limit-flag', lim <= maxLim);
+
+  document.getElementById('cr-memage').textContent        = memAgeMo + ' mo';
+  document.getElementById('cr-memage-impact').textContent = memAgeMo >= 24 ? 'Low' : 'Medium';
+  setFlag('cr-memage-flag', memAgeMo >= 24);
+
+  document.getElementById('cr-existcc').textContent        = existCCs;
+  document.getElementById('cr-existcc-impact').textContent = existCCs <= 2 ? 'Low' : existCCs === 3 ? 'Medium' : 'High';
+  setFlag('cr-existcc-flag', existCCs <= 3);
+
+  var autoPass = app.score >= 620 && dti <= 43 && lim <= maxLim;
+  var autoRec  = document.getElementById('auto-recommendation');
+  autoRec.innerHTML = autoPass
+    ? '<span style="color:green; font-weight:bold">RECOMMEND APPROVAL</span>'
+    : '<span style="color:red; font-weight:bold">RECOMMEND DECLINE &mdash; Review required</span>';
+
+  addAudit('Application ' + app.id + ' opened by STAFF');
+}
+
+function scoreClass(s) {
+  if (s >= 720) return 'score-good';
+  if (s >= 620) return 'score-fair';
+  return 'score-poor';
+}
+
+function decisionChanged(val) {
+  document.getElementById('approve-fields').style.display   = (val==='APPROVED') ? '' : 'none';
+  document.getElementById('approve-fields-2').style.display = (val==='APPROVED') ? '' : 'none';
+  document.getElementById('decline-fields').style.display   = (val==='DECLINED') ? '' : 'none';
+  document.getElementById('escalate-fields').style.display  = (val==='ESCALATED') ? '' : 'none';
+  addAudit('Decision selection changed to: ' + val);
+}
+
+function submitDecision() {
+  var dec  = document.querySelector('input[name="decision"]:checked');
+  var notes= document.querySelector('textarea[name="officer_notes"]').value.trim();
+  var err  = document.getElementById('review-err');
+  err.style.display = 'none';
+
+  if (!dec) {
+    err.style.display = 'block';
+    err.textContent = 'ERROR: A decision must be selected.';
+    return;
+  }
+  if (!notes) {
+    err.style.display = 'block';
+    err.textContent = 'ERROR: Officer notes are required. Document your decision rationale.';
+    return;
+  }
+  if (dec.value === 'APPROVED') {
+    var lim = document.querySelector('select[name="approved_limit"]').value;
+    if (!lim) {
+      err.style.display = 'block';
+      err.textContent = 'ERROR: Approved credit limit must be selected.';
+      return;
+    }
+    // Deterministic trigger: notes contain "DENY" but decision is approve
+    if (notes.toUpperCase().indexOf('DENY') >= 0) {
+      document.getElementById('review-warn').style.display = 'block';
+      document.getElementById('review-warn').textContent =
+        'WARNING [DCNF-011]: Notes contain the word "DENY" but decision is APPROVED. Verify before submitting.';
+      return;
+    }
+  }
+  if (dec.value === 'DECLINED') {
+    var reason = document.querySelector('select[name="decline_reason"]').value;
+    if (!reason) {
+      err.style.display = 'block';
+      err.textContent = 'ERROR: A decline reason must be selected.';
+      return;
+    }
+  }
+
+  // Confirm irreversible action
+  var msg = 'Confirm: Record decision as "' + dec.value + '" for application ' + appId + '?\n\nThis action cannot be undone without supervisor override.';
+  if (!confirm(msg)) return;
+
+  // Persist
+  var apps = getApplications();
+  var idx = apps.findIndex(function(a){ return a.id === appId; });
+  if (idx >= 0) {
+    apps[idx].status = dec.value;
+    apps[idx].decidedBy  = 'STAFF';
+    apps[idx].decidedAt  = new Date().toLocaleDateString('en-US');
+    saveApplications(apps);
+  }
+
+  addAudit('DECISION SUBMITTED: ' + dec.value + ' by STAFF');
+
+  document.getElementById('decision-panel').style.display = 'none';
+  var conf = document.getElementById('decision-confirmed');
+  conf.style.display = 'block';
+  document.getElementById('dec-title').textContent = 'Decision Recorded: ' + dec.value;
+  document.getElementById('dec-detail').textContent =
+    'Application ' + appId + ' has been marked as ' + dec.value + '. ' +
+    (dec.value === 'APPROVED' ? 'A welcome letter will be mailed within 3 business days.' :
+     dec.value === 'DECLINED' ? 'An adverse action notice will be mailed within 30 days.' :
+     'The application has been routed to the designated officer.');
+  if (dec.value === 'DECLINED') {
+    document.getElementById('dec-icon').style.color = '#900';
+    document.getElementById('dec-icon').textContent = '✗';
+  }
+}
+
+function requestOverride() {
+  var notes = document.querySelector('textarea[name="officer_notes"]').value.trim();
+  if (!notes) {
+    document.getElementById('review-err').style.display = 'block';
+    document.getElementById('review-err').textContent = 'ERROR: Notes are required to request an override.';
+    return;
+  }
+  alert('Override request submitted to Branch Manager.\nRef: OVR-' + appId + '\nYou will be notified within 1 business day.');
+  addAudit('Override requested for ' + appId);
+}
+
+function togglePanel(bodyId) {
+  var body = document.getElementById(bodyId);
+  body.style.display = body.style.display === 'none' ? '' : 'none';
+}
+</script>
+</body>
+</html>

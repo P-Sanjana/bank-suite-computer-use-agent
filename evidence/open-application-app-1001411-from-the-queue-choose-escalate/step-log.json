@@ -1,0 +1,112 @@
+[
+  {
+    "level": "info",
+    "message": "Discovery started. Goal: \"Open application APP-1001411 from the queue, choose Escalate to Senior Officer, set Escalate To to K. Patel (Senior Officer), enter officer notes 'Needs senior review', and submit until Decision Recorded.\" Entry: http://localhost:3000/queue.html",
+    "timestamp": "2026-11-15T17:45:53.428130+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 1: http://localhost:3000/queue.html - \"Bank Suite - Application Queue\"",
+    "timestamp": "2026-11-15T17:45:53.499376+00:00"
+  },
+  {
+    "level": "reason",
+    "message": "[Turn 1] (no reasoning)",
+    "timestamp": "2026-11-15T17:45:55.770480+00:00"
+  },
+  {
+    "level": "error",
+    "message": "[click] -> Action failed: Cannot resolve locator (radio_adjacent did not match a unique visible element). role='link', name='Review', label=None",
+    "timestamp": "2026-11-15T17:45:55.854350+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 2: http://localhost:3000/queue.html - \"Bank Suite - Application Queue\"",
+    "timestamp": "2026-11-15T17:45:55.990808+00:00"
+  },
+  {
+    "level": "reason",
+    "message": "[Turn 2] (no reasoning)",
+    "timestamp": "2026-11-15T17:45:57.975565+00:00"
+  },
+  {
+    "level": "action",
+    "message": "[click] -> Clicked \"Review\". Page updated (http://localhost:3000/review.html?id=APP-1001411).",
+    "timestamp": "2026-11-15T17:45:58.733802+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 3: http://localhost:3000/review.html?id=APP-1001411 - \"Bank Suite - Application Review\"",
+    "timestamp": "2026-11-15T17:45:58.748343+00:00"
+  },
+  {
+    "level": "reason",
+    "message": "[Turn 3] (no reasoning)",
+    "timestamp": "2026-11-15T17:46:00.667370+00:00"
+  },
+  {
+    "level": "action",
+    "message": "[click] -> Clicked \"Escalate to Senior Officer\". Page updated (http://localhost:3000/review.html?id=APP-1001411).",
+    "timestamp": "2026-11-15T17:46:01.295585+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 4: http://localhost:3000/review.html?id=APP-1001411 - \"Bank Suite - Application Review\"",
+    "timestamp": "2026-11-15T17:46:01.332032+00:00"
+  },
+  {
+    "level": "reason",
+    "message": "[Turn 4] (no reasoning)",
+    "timestamp": "2026-11-15T17:46:03.808499+00:00"
+  },
+  {
+    "level": "action",
+    "message": "[select] -> Selected \"K. Patel (Senior Officer)\" in \"Escalate To *\".",
+    "timestamp": "2026-11-15T17:46:03.878106+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 5: http://localhost:3000/review.html?id=APP-1001411 - \"Bank Suite - Application Review\"",
+    "timestamp": "2026-11-15T17:46:03.903776+00:00"
+  },
+  {
+    "level": "reason",
+    "message": "[Turn 5] (no reasoning)",
+    "timestamp": "2026-11-15T17:46:06.301330+00:00"
+  },
+  {
+    "level": "action",
+    "message": "[type] -> Typed \"Needs senior review\" into \"Officer Notes *\".",
+    "timestamp": "2026-11-15T17:46:06.388451+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 6: http://localhost:3000/review.html?id=APP-1001411 - \"Bank Suite - Application Review\"",
+    "timestamp": "2026-11-15T17:46:06.412958+00:00"
+  },
+  {
+    "level": "warn",
+    "message": "Potentially irreversible: [click] \"Submit Decision\" \u2014 proceeding; confirm() auto-accepted",
+    "timestamp": "2026-11-15T17:46:08.705652+00:00"
+  },
+  {
+    "level": "reason",
+    "message": "[Turn 6] (no reasoning)",
+    "timestamp": "2026-11-15T17:46:08.705652+00:00"
+  },
+  {
+    "level": "action",
+    "message": "[click] -> Clicked \"Submit Decision\". Page updated (http://localhost:3000/review.html?id=APP-1001411).",
+    "timestamp": "2026-11-15T17:46:09.315661+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 7: http://localhost:3000/review.html?id=APP-1001411 - \"Bank Suite - Application Review\"",
+    "timestamp": "2026-11-15T17:46:09.335552+00:00"
+  },
+  {
+    "level": "success",
+    "message": "Goal complete. The page displays \"\u2713 Decision Recorded: ESCALATED Application APP-1001411 has been marked as ESCALATED. The application has been routed to the designated officer.\" The audit log confirms \"[11:46:08] DECISION SUBMITTED: ESCALATED by STAFF\".",
+    "timestamp": "2026-11-15T17:46:13.875371+00:00"
+  }
+]

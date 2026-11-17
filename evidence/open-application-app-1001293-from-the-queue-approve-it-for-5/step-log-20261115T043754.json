@@ -1,0 +1,102 @@
+[
+  {
+    "level": "info",
+    "message": "Discovery started. Goal: \"Open application APP-1001293 from the queue, approve it for $5000 with officer notes 'Score and DTI within policy', and reach the Decision Recorded screen\" Entry: http://localhost:3000/queue.html",
+    "timestamp": "2026-11-15T04:37:33.265255+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 1: http://localhost:3000/queue.html - \"Bank Suite - Application Queue\"",
+    "timestamp": "2026-11-15T04:37:33.807718+00:00"
+  },
+  {
+    "level": "reason",
+    "message": "[Turn 1] (no reasoning)",
+    "timestamp": "2026-11-15T04:37:38.313664+00:00"
+  },
+  {
+    "level": "action",
+    "message": "[click] -> Clicked \"Review\". Page updated (http://localhost:3000/review.html?id=APP-1001293).",
+    "timestamp": "2026-11-15T04:37:39.073649+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 2: http://localhost:3000/review.html?id=APP-1001293 - \"Bank Suite - Application Review\"",
+    "timestamp": "2026-11-15T04:37:39.259938+00:00"
+  },
+  {
+    "level": "warn",
+    "message": "Potentially irreversible: [click] \"Approve\" \u2014 proceeding; confirm() auto-accepted",
+    "timestamp": "2026-11-15T04:37:41.116924+00:00"
+  },
+  {
+    "level": "reason",
+    "message": "[Turn 2] (no reasoning)",
+    "timestamp": "2026-11-15T04:37:41.116924+00:00"
+  },
+  {
+    "level": "action",
+    "message": "[click] -> Clicked \"Approve\". Page updated (http://localhost:3000/review.html?id=APP-1001293).",
+    "timestamp": "2026-11-15T04:37:41.768500+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 3: http://localhost:3000/review.html?id=APP-1001293 - \"Bank Suite - Application Review\"",
+    "timestamp": "2026-11-15T04:37:41.801122+00:00"
+  },
+  {
+    "level": "reason",
+    "message": "[Turn 3] (no reasoning)",
+    "timestamp": "2026-11-15T04:37:44.349612+00:00"
+  },
+  {
+    "level": "action",
+    "message": "[select] -> Selected \"$5,000\" in \"Approved Limit *\".",
+    "timestamp": "2026-11-15T04:37:44.432288+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 4: http://localhost:3000/review.html?id=APP-1001293 - \"Bank Suite - Application Review\"",
+    "timestamp": "2026-11-15T04:37:44.459675+00:00"
+  },
+  {
+    "level": "reason",
+    "message": "[Turn 4] (no reasoning)",
+    "timestamp": "2026-11-15T04:37:46.912988+00:00"
+  },
+  {
+    "level": "action",
+    "message": "[type] -> Typed \"Score and DTI within policy\" into \"Officer Notes *\".",
+    "timestamp": "2026-11-15T04:37:47.014637+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 5: http://localhost:3000/review.html?id=APP-1001293 - \"Bank Suite - Application Review\"",
+    "timestamp": "2026-11-15T04:37:47.049818+00:00"
+  },
+  {
+    "level": "warn",
+    "message": "Potentially irreversible: [click] \"Submit Decision\" \u2014 proceeding; confirm() auto-accepted",
+    "timestamp": "2026-11-15T04:37:48.954457+00:00"
+  },
+  {
+    "level": "reason",
+    "message": "[Turn 5] (no reasoning)",
+    "timestamp": "2026-11-15T04:37:48.954457+00:00"
+  },
+  {
+    "level": "action",
+    "message": "[click] -> Clicked \"Submit Decision\". Page updated (http://localhost:3000/review.html?id=APP-1001293).",
+    "timestamp": "2026-11-15T04:37:49.700013+00:00"
+  },
+  {
+    "level": "observe",
+    "message": "Turn 6: http://localhost:3000/review.html?id=APP-1001293 - \"Bank Suite - Application Review\"",
+    "timestamp": "2026-11-15T04:37:49.729827+00:00"
+  },
+  {
+    "level": "success",
+    "message": "Goal complete. The page displays \"\u2713 Decision Recorded: APPROVED Application APP-1001293 has been marked as APPROVED. A welcome letter will be mailed within 3 business days.\" The audit log confirms \"DECISION SUBMITTED: APPROVED by STAFF\" at 22:37:49.",
+    "timestamp": "2026-11-15T04:37:54.679584+00:00"
+  }
+]
